@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4D5BB"
+    tools:context="com.cafe.decale.ledecale.MainActivity">
+
+
+    <Button
+        android:id="@+id/gamesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_list"
+        android:textColor="#ffffff"
+        android:layout_centerInParent="true"
+        android:background="@layout/round_shape"
+        />
+    <Button
+        android:id="@+id/eventsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/events_list"
+        android:textColor="#ffffff"
+        android:background="@layout/round_shape"
+        android:layout_above="@+id/gamesButton"
+        android:layout_alignStart="@+id/gamesButton"
+        android:layout_marginBottom="18dp" />
+    <Button
+        android:id="@+id/newsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/news_list"
+        android:textColor="#ffffff"
+        android:background="@layout/round_shape"
+        android:layout_below="@+id/gamesButton"
+        android:layout_alignStart="@+id/gamesButton"
+        android:layout_marginTop="18dp" />
+
+</RelativeLayout>

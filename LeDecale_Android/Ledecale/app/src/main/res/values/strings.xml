@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Ledecale</string>
+    <string name="title_item_activity">ItemActivity</string>
+    <string name="game_list">Game List</string>
+    <string name="events_list">Events List</string>
+    <string name="news_list">News List</string>
+</resources>
