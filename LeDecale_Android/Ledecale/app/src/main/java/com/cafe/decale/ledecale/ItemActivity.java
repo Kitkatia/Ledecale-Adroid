@@ -14,22 +14,9 @@ import java.util.List;
  */
 
 public class ItemActivity extends Activity {
-    ListView list = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_activity);
-
-        list =(ListView) findViewById(R.id.list_view);
-        List<String> example = new ArrayList<>();
-        example.add("1");
-        example.add("2");
-        example.add("3");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, example);
-        list.setAdapter(adapter);
-
-        //textView = (TextView) findViewById(R.id.textView);
 
     }
 }

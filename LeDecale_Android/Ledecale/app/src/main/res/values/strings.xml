@@ -4,4 +4,5 @@
     <string name="game_list">Game List</string>
     <string name="events_list">Events List</string>
     <string name="news_list">News List</string>
+    <string name="title_game_list_activity">GameListActivity</string>
 </resources>
