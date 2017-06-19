@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:weightSum="1">
+
+
+
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/gamePicture"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/gameRate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameName"
+        android:layout_toEndOf="@+id/gamePicture" />
+
+    <ImageView
+        android:id="@+id/gamePicture"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@id/gameRate"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+</RelativeLayout>

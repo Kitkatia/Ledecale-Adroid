@@ -27,6 +27,16 @@
             android:label="@string/title_game_list_activity"
             >
         </activity>
+        <activity
+            android:name=".NewsListActivity"
+            android:label="@string/title_news_list_activity"
+            >
+        </activity>
+        <activity
+            android:name=".EventListActivity"
+            android:label="@string/title_event_list_activity"
+            >
+        </activity>
 
     </application>
 

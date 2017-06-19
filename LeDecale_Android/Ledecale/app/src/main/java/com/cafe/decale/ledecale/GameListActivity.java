@@ -2,6 +2,7 @@ package com.cafe.decale.ledecale;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.cafe.decale.ledecale.adapter.GameAdapter;
 import com.cafe.decale.ledecale.model.Game;
 
 
@@ -24,14 +26,11 @@ import java.util.List;
 public class GameListActivity extends Activity implements GameListAsync.Listener, AdapterView.OnItemClickListener {
 
     private ListView list;
-    private List<String> gameList = new ArrayList<>();
+    private List<Game> gameList = new ArrayList<>();
 
     private static final String KEY_NAME = "name";
     private static final String KEY_RATE = "rate";
     private static final String KEY_IMG = "img";
-
-    private List<HashMap<String, String>> gameDetailMapList = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,31 +54,22 @@ public class GameListActivity extends Activity implements GameListAsync.Listener
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        Toast.makeText(this, gameDetailMapList.get(i).get(KEY_NAME),Toast.LENGTH_LONG).show();
+        Toast.makeText(this, gameList.get(i).getName(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onLoaded(List<Game> games) {
-        for (Game game : games) {
-            HashMap<String, String> map = new HashMap<>();
-
-            map.put(KEY_NAME, game.getName());
-            map.put(KEY_RATE, String.valueOf(game.getRating()));
-            map.put(KEY_IMG, game.getThumbnail());
-
-            gameDetailMapList.add(map);
-
-        }
-
+        Log.i("DECALE", "onLoaded");
+        gameList = games;
         loadListView();
     }
 
     private void loadListView() {
-        ListAdapter adapter = new SimpleAdapter(GameListActivity.this, gameDetailMapList, R.layout.item_activity,
-                new String[] { KEY_NAME, KEY_RATE, KEY_IMG },
-                new int[] { R.id.gameName,R.id.gameRate, R.id.gameImage });
+        Log.i("DECALE", "loadListView");
+        Log.i("DECALE", "" + gameList.size());
+        GameAdapter gameAdapter = new GameAdapter(GameListActivity.this, 0, gameList);
 
-        list.setAdapter(adapter);
+        list.setAdapter(gameAdapter);
 
     }
 }

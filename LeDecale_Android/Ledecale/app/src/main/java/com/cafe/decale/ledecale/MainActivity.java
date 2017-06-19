@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
-    Button gameList = null;
-    TextView text = null;
+    Button gameItemList;
+    Button eventItemList;
+    Button newsItemList;
+    TextView text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -22,9 +25,11 @@ public class MainActivity extends Activity {
 
         text = (TextView) findViewById(R.id.welcomeText);
 
-        gameList = (Button) findViewById(R.id.gamesButton);
+        gameItemList = (Button) findViewById(R.id.gamesButton);
+        eventItemList = (Button) findViewById(R.id.eventsButton);
+        newsItemList = (Button)  findViewById(R.id.newsButton);
 
-        gameList.setOnClickListener(new View.OnClickListener(){
+        gameItemList.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
@@ -33,6 +38,21 @@ public class MainActivity extends Activity {
             }
         });
 
+        eventItemList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EventListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        newsItemList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+              Intent intent = new Intent(MainActivity.this, NewsListActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
