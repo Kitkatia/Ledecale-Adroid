@@ -5,4 +5,6 @@
     <string name="events_list">Events List</string>
     <string name="news_list">News List</string>
     <string name="title_game_list_activity">GameListActivity</string>
+    <string name="games">games</string>
+    <string name="error">ERROR</string>
 </resources>

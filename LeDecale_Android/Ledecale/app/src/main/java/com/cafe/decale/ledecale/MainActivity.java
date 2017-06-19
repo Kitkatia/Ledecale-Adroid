@@ -27,8 +27,8 @@ public class MainActivity extends Activity {
         gameList.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, ItemActivity.class);
+                //Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, GameListActivity.class);
                 startActivity(intent);
             }
         });
