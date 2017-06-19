@@ -44,42 +44,35 @@ public class GameListAsync extends AsyncTask<String, Void, Response> {
         ArrayList<Game> jsonGames = new ArrayList<>();
         Response games = new Response();
         try {
-            try {
-                rawResponse = loadJson(apiUrl + "game");
-               // Log.d("RES", rawResponse);
-            }
-            catch (IOException e1) {
-                rawResponse = "ERROR";
-                e1.printStackTrace();
-            }
+            rawResponse = loadJson(apiUrl);
+            // Log.d("RES", rawResponse)
+            JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
+            Log.d("NUM", Integer.toString(jsonArray.length()));
 
-                JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
-                Log.d("NUM", Integer.toString(jsonArray.length()));
+            for (int i = 0; i < jsonArray.length(); i++) {
 
-                for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                JSONArray jsonCategories = jsonObject.getJSONArray("categories");
+                List<Category> categories = new ArrayList<>();
 
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    JSONArray jsonCategories = jsonObject.getJSONArray("categories");
-                    List<Category> categories = new ArrayList<>();
-
-                    for(int j = 0 ; j < jsonCategories.length(); j++){
-                        JSONObject jsonCategory = jsonCategories.getJSONObject(j);
-                        Category category = new Category(jsonCategory.getString("name"), jsonCategory.getString("translatedName"));
-                        categories.add(category);
-                    }
-                    Game game = new Game(jsonObject.getDouble("objectId"), jsonObject.getInt("age"),
-                                        jsonObject.getString("name"), jsonObject.getString("description"),
-                                        jsonObject.getInt("player_min"), jsonObject.getInt("player_max"),
-                                        jsonObject.getInt("minPlayTime"), jsonObject.getInt("maxPlayTime"),
-                                        jsonObject.getDouble("price"), jsonObject.getString("thumbnail"),
-                                        jsonObject.getDouble("rating"), jsonObject.getDouble("weight"), categories);
-
-                    jsonGames.add(game);
+                for(int j = 0 ; j < jsonCategories.length(); j++){
+                    JSONObject jsonCategory = jsonCategories.getJSONObject(j);
+                    Category category = new Category(jsonCategory.getString("name"), jsonCategory.getString("translatedName"));
+                    categories.add(category);
                 }
-                games.setGames(jsonGames);
-                return games;
+                Game game = new Game(jsonObject.getDouble("objectId"), jsonObject.getInt("age"),
+                                    jsonObject.getString("name"), jsonObject.getString("description"),
+                                    jsonObject.getInt("player_min"), jsonObject.getInt("player_max"),
+                                    jsonObject.getInt("minPlayTime"), jsonObject.getInt("maxPlayTime"),
+                                    jsonObject.getDouble("price"), jsonObject.getString("thumbnail"),
+                                    jsonObject.getDouble("rating"), jsonObject.getDouble("weight"), categories);
+
+                jsonGames.add(game);
             }
-            catch (JSONException e1) {
+            games.setGames(jsonGames);
+            return games;
+        }
+        catch (JSONException | IOException e1) {
             e1.printStackTrace();
         }
         return games;
