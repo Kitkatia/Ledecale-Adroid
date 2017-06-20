@@ -1,12 +1,19 @@
 package com.cafe.decale.ledecale.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
+import java.util.jar.Pack200;
+
+import static android.R.attr.category;
 
 /**
  * Created by manut on 15/06/2017.
  */
 
-public class Game {
+public class Game implements Serializable {
     double objectId;
     int age;
 
@@ -141,4 +148,25 @@ public class Game {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+/*    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(thumbnail);
+        dest.writeInt(playerMin);
+        dest.writeInt(playerMax);
+        dest.writeInt(maxPlayTime);
+        dest.writeInt(minPlayTime);
+        dest.writeDouble(rating);
+        dest.writeDouble(weight);
+
+        for (Category category : categories)
+            dest.writeSerializable(category);
+    }*/
 }

@@ -10,4 +10,5 @@
     <string name="rate">Rate:</string>
     <string name="title_news_list_activity">NewsListActivity</string>
     <string name="title_event_list_activity">EventListActivity</string>
+    <string name="title_game_activity">GameActivity</string>
 </resources>

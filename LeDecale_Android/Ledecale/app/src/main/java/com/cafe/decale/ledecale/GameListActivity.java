@@ -1,6 +1,7 @@
 package com.cafe.decale.ledecale;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +54,9 @@ public class GameListActivity extends Activity implements GameListAsync.Listener
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        Intent intent = new Intent(GameListActivity.this, GameActivity.class);
+        intent.putExtra("game", gameList.get(i));
+        startActivity(intent);
         Toast.makeText(this, gameList.get(i).getName(),Toast.LENGTH_LONG).show();
     }
 

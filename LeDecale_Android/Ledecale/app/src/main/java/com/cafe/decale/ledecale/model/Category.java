@@ -1,10 +1,12 @@
 package com.cafe.decale.ledecale.model;
 
+import java.io.Serializable;
+
 /**
  * Created by manut on 15/06/2017.
  */
 
-public class Category {
+public class Category implements Serializable{
     String name;
     String translatedName;
 
