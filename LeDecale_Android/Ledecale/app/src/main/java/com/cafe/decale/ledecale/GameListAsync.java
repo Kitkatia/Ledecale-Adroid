@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.cafe.decale.ledecale.model.Category;
 import com.cafe.decale.ledecale.model.Game;
-import com.cafe.decale.ledecale.model.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,11 +19,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by manut on 13/06/2017.
  */
 
-public class GameListAsync extends AsyncTask<String, Void, Response> {
+public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
 
     public GameListAsync(Listener listener){
         mListener = listener;
@@ -38,16 +39,13 @@ public class GameListAsync extends AsyncTask<String, Void, Response> {
     private Listener mListener;
 
     @Override
-    protected Response doInBackground(String... strings) {
-        String apiUrl = "https://ledecalebackend-dev.herokuapp.com/";
+    protected ArrayList<Game> doInBackground(String... strings) {
         String rawResponse = null;
         ArrayList<Game> jsonGames = new ArrayList<>();
-        Response games = new Response();
         try {
-            rawResponse = loadJson(apiUrl);
+            rawResponse = loadJson(strings[0]);
             // Log.d("RES", rawResponse)
             JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
-            Log.d("NUM", Integer.toString(jsonArray.length()));
 
             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -60,27 +58,27 @@ public class GameListAsync extends AsyncTask<String, Void, Response> {
                     Category category = new Category(jsonCategory.getString("name"), jsonCategory.getString("translatedName"));
                     categories.add(category);
                 }
+                double price = jsonObject.get("price").equals(null) ? 0.0 : jsonObject.getDouble("price");
                 Game game = new Game(jsonObject.getDouble("objectId"), jsonObject.getInt("age"),
                                     jsonObject.getString("name"), jsonObject.getString("description"),
                                     jsonObject.getInt("player_min"), jsonObject.getInt("player_max"),
                                     jsonObject.getInt("minPlayTime"), jsonObject.getInt("maxPlayTime"),
-                                    0.0, jsonObject.getString("thumbnail"),
+                                    price, jsonObject.getString("thumbnail"),
                                     jsonObject.getDouble("rating"), jsonObject.getDouble("weight"), categories);
 
                 jsonGames.add(game);
             }
-            games.setGames(jsonGames);
-            return games;
+            return jsonGames;
         }
         catch (JSONException | IOException e1) {
             e1.printStackTrace();
         }
-        return games;
+        return jsonGames;
     }
 
     private String loadJson(String apiUrl) throws IOException{
         URL url = new URL(apiUrl + "games");
-        //Log.d("URL", url.toString());
+
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         StringBuilder stringBuilder = new StringBuilder();
@@ -92,11 +90,11 @@ public class GameListAsync extends AsyncTask<String, Void, Response> {
         return stringBuilder.toString();
     }
     @Override
-    protected void onPostExecute(Response response) {
+    protected void onPostExecute(ArrayList<Game> games) {
 
-        if (response != null) {
+        if (games != null) {
 
-            mListener.onLoaded(response.getGames());
+            mListener.onLoaded(games);
 
         } else {
 

@@ -29,9 +29,6 @@ public class GameListActivity extends Activity implements GameListAsync.Listener
     private ListView list;
     private List<Game> gameList = new ArrayList<>();
 
-    private static final String KEY_NAME = "name";
-    private static final String KEY_RATE = "rate";
-    private static final String KEY_IMG = "img";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +54,6 @@ public class GameListActivity extends Activity implements GameListAsync.Listener
         Intent intent = new Intent(GameListActivity.this, GameActivity.class);
         intent.putExtra("game", gameList.get(i));
         startActivity(intent);
-        Toast.makeText(this, gameList.get(i).getName(),Toast.LENGTH_LONG).show();
     }
 
     @Override

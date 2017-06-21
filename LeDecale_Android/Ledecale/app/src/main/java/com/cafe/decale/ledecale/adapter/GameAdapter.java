@@ -32,19 +32,19 @@ public class GameAdapter extends ArrayAdapter<Game> {
         LayoutInflater unLayoutInflater = LayoutInflater.from(getContext());
         View view = unLayoutInflater.inflate(R.layout.game_list_item, null);
 
-        TextView nom = (TextView) view.findViewById(R.id.gameName);
-        TextView note = (TextView) view.findViewById(R.id.gameRate);
+        TextView name = (TextView) view.findViewById(R.id.gameName);
+        TextView rate = (TextView) view.findViewById(R.id.gameRate);
         ImageView picture = (ImageView) view.findViewById(R.id.gamePicture);
 
         Game g = getItem(position);
 
-        nom.setText(g.getName()+ "\n");
-        nom.setTextColor(Color.BLACK);
+        name.setText(g.getName()+ "\n");
+        name.setTextColor(Color.BLACK);
 
-        String rate = context.getString(R.string.rate) + String.valueOf(g.getRating());
+        String rating = context.getString(R.string.rate) + String.valueOf(g.getRating());
 
-        note.setText(rate);
-        note.setTextColor(Color.BLACK);
+        rate.setText(rating);
+        rate.setTextColor(Color.BLACK);
 
         Picasso.with(context).load(g.getThumbnail()).into(picture);
 

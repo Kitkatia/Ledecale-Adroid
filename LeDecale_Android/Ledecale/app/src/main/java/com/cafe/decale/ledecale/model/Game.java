@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.Pack200;
 
@@ -16,23 +17,6 @@ import static android.R.attr.category;
 public class Game implements Serializable {
     double objectId;
     int age;
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     String name;
     String description;
     int playerMin;
@@ -59,6 +43,21 @@ public class Game implements Serializable {
         this.rating = rating;
         this.weight = weight;
         this.categories = categories;
+    }
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getObjectId() {
@@ -149,24 +148,12 @@ public class Game implements Serializable {
         this.categories = categories;
     }
 
-/*    @Override
-    public int describeContents() {
-        return 0;
+    public List<String> getCategoryNames(){
+        List<String> categoryNames = new ArrayList<>();
+        for(Category category : categories){
+            categoryNames.add(category.getName());
+        }
+        return categoryNames;
+
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(description);
-        dest.writeString(thumbnail);
-        dest.writeInt(playerMin);
-        dest.writeInt(playerMax);
-        dest.writeInt(maxPlayTime);
-        dest.writeInt(minPlayTime);
-        dest.writeDouble(rating);
-        dest.writeDouble(weight);
-
-        for (Category category : categories)
-            dest.writeSerializable(category);
-    }*/
 }
