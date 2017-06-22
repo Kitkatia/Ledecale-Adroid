@@ -13,6 +13,7 @@ import com.cafe.decale.ledecale.R;
 import com.cafe.decale.ledecale.model.News;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -49,12 +50,11 @@ public class NewsAdapter extends ArrayAdapter<News> {
         content.setText(news.getContent());
         content.setTextColor(Color.BLACK);
 
-        Date d = new Date(Long.parseLong(news.getDateCreation())*1000L);
-        creationDate.setText("Created: " + d.toString());
+        creationDate.setText("Created: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(news.getDateCreation()))));
         creationDate.setTextColor(Color.BLACK);
 
-        d = new Date(Long.parseLong(news.getDateNews())*1000L);
-        newsDate.setText("Scheduled for: " + d.toString());
+        newsDate.setText("Scheduled for: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(news.getDateNews()))));
+        creationDate.setTextColor(Color.BLACK);
 
         Picasso.with(context).load(news.getUrlImage()).into(picture);
 
