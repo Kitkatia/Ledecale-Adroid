@@ -2,6 +2,7 @@ package com.cafe.decale.ledecale.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         title.setText(news.getTitle());
         title.setTextColor(Color.BLACK);
 
-        content.setText(news.getContent());
+        content.setText(Html.fromHtml(news.getContent()));
         content.setTextColor(Color.BLACK);
 
         creationDate.setText("Created: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(news.getDateCreation()))));

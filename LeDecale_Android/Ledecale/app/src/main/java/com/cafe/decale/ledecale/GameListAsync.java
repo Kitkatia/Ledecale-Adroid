@@ -1,7 +1,6 @@
 package com.cafe.decale.ledecale;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.cafe.decale.ledecale.model.Category;
 import com.cafe.decale.ledecale.model.Game;
@@ -11,15 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by manut on 13/06/2017.
@@ -43,8 +36,8 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
         String rawResponse = null;
         ArrayList<Game> jsonGames = new ArrayList<>();
         try {
-            rawResponse = loadJson(strings[0]);
-            // Log.d("RES", rawResponse)
+            rawResponse = EstablishConnection.loadJson(strings[0], "games");
+
             JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
 
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -76,19 +69,6 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
         return jsonGames;
     }
 
-    private String loadJson(String apiUrl) throws IOException{
-        URL url = new URL(apiUrl + "games");
-
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            stringBuilder.append(line).append("\n");
-        }
-        bufferedReader.close();
-        return stringBuilder.toString();
-    }
     @Override
     protected void onPostExecute(ArrayList<Game> games) {
 

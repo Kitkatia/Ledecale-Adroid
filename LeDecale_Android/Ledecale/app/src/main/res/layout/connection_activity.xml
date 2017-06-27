@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:text="Connection" />
+
+    <TextView
+        android:id="@+id/logIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="69dp"
+        android:layout_toStartOf="@+id/title"
+        android:text="Login :" />
+
+    <TextView
+        android:id="@+id/textPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/logIn"
+        android:layout_below="@+id/logIn"
+        android:layout_marginTop="30dp"
+        android:text="Password :" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/textPassword"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_alignBottom="@+id/textPassword"
+        android:layout_alignTop="@+id/textPassword" />
+
+    <EditText
+        android:id="@+id/pseudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/password"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Pseudo"
+        android:layout_alignTop="@+id/logIn"
+        android:layout_above="@+id/textPassword" />
+
+    <Button
+        android:id="@+id/connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="120dp"
+        android:background="@layout/round_rectangle_shape"
+        android:text="Connection" />
+</RelativeLayout>

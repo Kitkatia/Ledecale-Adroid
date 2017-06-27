@@ -2,10 +2,7 @@ package com.cafe.decale.ledecale;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cafe.decale.ledecale.model.Game;
@@ -25,7 +22,7 @@ public class GameActivity extends Activity{
     TextView price;
     TextView weight;
     TextView rate;
-    ListView categories;
+    TextView categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +57,10 @@ public class GameActivity extends Activity{
         picture = (ImageView) findViewById(R.id.gamePicture);
         Picasso.with(GameActivity.this).load(game.getThumbnail()).into(picture);
 
-        categories = (ListView) findViewById(R.id.gameCategories);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(GameActivity.this, android.R.layout.simple_spinner_item, game.getCategoryNames());
-        categories.setAdapter(adapter);
+        categories = (TextView) findViewById(R.id.gameCategories);
 
+        for (String category : game.getCategoryNames()){
+            categories.append("\n" + category);
+        }
     }
 }

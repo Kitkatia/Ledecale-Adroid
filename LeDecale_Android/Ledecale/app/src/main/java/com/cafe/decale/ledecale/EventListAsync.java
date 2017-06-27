@@ -1,10 +1,8 @@
 package com.cafe.decale.ledecale;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.cafe.decale.ledecale.model.Event;
-import com.cafe.decale.ledecale.model.Game;
 import com.cafe.decale.ledecale.model.User;
 
 import org.json.JSONArray;
@@ -12,15 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by manut on 22/06/2017.
@@ -44,7 +36,7 @@ class EventListAsync extends AsyncTask<String, Void, ArrayList<Event>> {
         String rawResponse = null;
         ArrayList<Event> jsonEvents = new ArrayList<>();
         try {
-            rawResponse = loadJson(strings[0]);
+            rawResponse = EstablishConnection.loadJson(strings[0], "event");
 
             JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
 
@@ -73,7 +65,6 @@ class EventListAsync extends AsyncTask<String, Void, ArrayList<Event>> {
                 jsonEvents.add(event);
 
             }
-            Log.d(TAG, "doInBackground: "+ jsonEvents.size());
             return jsonEvents;
         }
         catch (JSONException e1) {
@@ -84,19 +75,6 @@ class EventListAsync extends AsyncTask<String, Void, ArrayList<Event>> {
         return jsonEvents;
     }
 
-    private String loadJson(String apiUrl) throws IOException {
-        URL url = new URL(apiUrl + "event");
-
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            stringBuilder.append(line).append("\n");
-        }
-        bufferedReader.close();
-        return stringBuilder.toString();
-    }
     @Override
     protected void onPostExecute(ArrayList<Event> events) {
 
