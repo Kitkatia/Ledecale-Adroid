@@ -2,6 +2,7 @@ package com.cafe.decale.ledecale.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         endDate.setText("Ends: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(event.getEndDate()))));
         endDate.setTextColor(Color.BLACK);
 
-        information.setText(event.getInformation());
+        information.setText(Html.fromHtml(event.getInformation()));
         information.setTextColor(Color.BLACK);
 
         creator.setText(event.getCreator().getPseudo());

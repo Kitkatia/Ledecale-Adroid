@@ -10,12 +10,22 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar"
         >
-        <activity android:name=".MainActivity">
+        <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ConnectionActivity"
+            android:label="ConnextionActivity"
+            >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="MainActivity"
+            >
         </activity>
         <activity
             android:name=".GameListActivity"

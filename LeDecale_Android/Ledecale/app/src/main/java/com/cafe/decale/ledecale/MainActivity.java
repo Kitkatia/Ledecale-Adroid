@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
         //btnLogout = (Button) findViewById(R.id.btnLogout);
 
         Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLogged(), Toast.LENGTH_LONG).show();
-        session.checkLogin();
+        //session.checkLogin();
 
         HashMap<String, String> user = session.getUserDetails();
 

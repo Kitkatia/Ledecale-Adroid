@@ -2,6 +2,7 @@ package com.cafe.decale.ledecale;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class GameActivity extends Activity{
         name.setText(game.getName());
 
         description = (TextView) findViewById(R.id.gameDescription);
-        description.setText("Description : " + game.getDescription());
+        description.setText(Html.fromHtml(game.getDescription()));
 
         numPlayers = (TextView) findViewById(R.id.gameNumPlayers);
         numPlayers.setText("Max players : " +game.getPlayerMax() +" Min players : " + game.getPlayerMin());

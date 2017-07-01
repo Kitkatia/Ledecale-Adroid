@@ -8,13 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 /**
  * Created by manut on 24/06/2017.
  */
 
-public class ConnectionActivity extends Activity {
+public class ConnectionActivity extends Activity implements ConnectionAsync.Listener{
     Button connection;
-    EditText login, password;
+    EditText email, password;
 
     AlertDialogManager alert = new AlertDialogManager();
 
@@ -26,7 +27,7 @@ public class ConnectionActivity extends Activity {
 
         session = new MySessionManager(getApplicationContext());
 
-        login = (EditText) findViewById(R.id.pseudo);
+        email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
 
         Toast.makeText(getApplicationContext(), "User Login Status: "+ session.isLogged(), Toast.LENGTH_LONG).show();
@@ -35,23 +36,32 @@ public class ConnectionActivity extends Activity {
         connection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String pseudo = login.getText().toString();
-                String pass = login.getText().toString();
-                if(pseudo.trim().length() > 0 && pass.trim().length() > 0){
-                    if(pseudo.equals("test") && pass.equals("test")){
-                        session.createLoginSession("LeDecale", "ledecale@gmail.com");
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                    else{
-                        alert.showAlertDialog(ConnectionActivity.this, "Login faled...", "Username/Password is incorrect", false);
-                    }
+                String eMail = email.getText().toString();
+                String pass = password.getText().toString();
+                if(eMail.trim().length() > 0 && pass.trim().length() > 0){
+                    new ConnectionAsync(ConnectionActivity.this).execute("https://ledecalebackend-dev.herokuapp.com/authentification", eMail, pass);
                 }
                 else {
                     alert.showAlertDialog(ConnectionActivity.this, "Login failed", "Please enter username and password", false);
                 }
             }
         });
+    }
+
+
+    @Override
+    public void onLoaded(String token) {
+        if(token!= null) {
+            session.createLoginSession("LeDecale", email.getText().toString());
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+
+    }
+
+    @Override
+    public void onError() {
+        alert.showAlertDialog(ConnectionActivity.this, "Login failed", "Email or password not found", false);
     }
 }
