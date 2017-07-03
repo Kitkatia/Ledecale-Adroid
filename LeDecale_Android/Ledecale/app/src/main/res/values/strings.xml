@@ -11,4 +11,7 @@
     <string name="title_news_list_activity">NewsListActivity</string>
     <string name="title_event_list_activity">EventListActivity</string>
     <string name="title_game_activity">GameActivity</string>
+    <string name="MainActivity">MainActivity</string>
+    <string name="CategoryListActivity">CategoryListActivity</string>
+    <string name="ConnectionActivity">ConnectionActivity</string>
 </resources>

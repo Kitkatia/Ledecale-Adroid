@@ -13,6 +13,7 @@ import org.json.JSONTokener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by manut on 13/06/2017.
@@ -52,12 +53,25 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
                     categories.add(category);
                 }
                 double price = jsonObject.get("price").equals(null) ? 0.0 : jsonObject.getDouble("price");
-                Game game = new Game(jsonObject.getDouble("objectId"), jsonObject.getInt("age"),
+                Long objectId = 0L;
+                Double rating = 0.0;
+                Double weight = 0.0;
+                if(jsonObject.has("objectId") ){
+                    objectId = jsonObject.get("objectId").equals(null) ? 0L : jsonObject.getLong("objectId");
+                }
+                if(jsonObject.has("rating") ){
+                    rating = jsonObject.get("rating").equals(null) ? 0L : jsonObject.getDouble("rating");
+                }
+                if(jsonObject.has("weight") ){
+                    weight = jsonObject.get("weight").equals(null) ? 0L : jsonObject.getDouble("weight");
+                }
+
+                Game game = new Game(objectId, jsonObject.getInt("age"),
                                     jsonObject.getString("name"), jsonObject.getString("description"),
                                     jsonObject.getInt("player_min"), jsonObject.getInt("player_max"),
                                     jsonObject.getInt("minPlayTime"), jsonObject.getInt("maxPlayTime"),
                                     price, jsonObject.getString("thumbnail"),
-                                    jsonObject.getDouble("rating"), jsonObject.getDouble("weight"), categories);
+                                    rating, weight, categories);
 
                 jsonGames.add(game);
             }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,20 +45,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/decale"
-        android:layout_above="@+id/eventsButton"
-        android:layout_marginBottom="18dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/logout"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/eventsButton" />
 
-    <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/newsButton"
-        android:layout_marginTop="18dp"
-        android:text="La soif de jouer !"
-        android:fontFamily=""
-        android:textColor="#000000"
-        android:gravity="center"
-        android:textSize="30dp"
-        />
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/logout"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/profile"
+        android:visibility="invisible"/>
+
 </RelativeLayout>

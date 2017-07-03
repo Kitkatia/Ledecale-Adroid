@@ -19,12 +19,17 @@
         </activity>
         <activity
             android:name=".ConnectionActivity"
-            android:label="ConnextionActivity"
+            android:label="@string/ConnectionActivity"
+            >
+        </activity>
+        <activity
+            android:name=".CategoryListActivity"
+            android:label="@string/CategoryListActivity"
             >
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="MainActivity"
+            android:label="@string/MainActivity"
             >
         </activity>
         <activity

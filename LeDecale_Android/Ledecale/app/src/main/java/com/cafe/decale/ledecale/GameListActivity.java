@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.cafe.decale.ledecale.adapter.GameAdapter;
@@ -17,7 +15,6 @@ import com.cafe.decale.ledecale.model.Game;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,6 +24,7 @@ import java.util.List;
 public class GameListActivity extends Activity implements GameListAsync.Listener, AdapterView.OnItemClickListener {
 
     private ListView list;
+    private Button findByCat;
     private List<Game> gameList = new ArrayList<>();
 
 
@@ -38,8 +36,17 @@ public class GameListActivity extends Activity implements GameListAsync.Listener
         list = (ListView) findViewById(R.id.list_view);
         list.setOnItemClickListener(this);
 
-        String URL = "https://ledecalebackend-dev.herokuapp.com/";
-        new GameListAsync(this).execute(URL);
+        findByCat = (Button)  findViewById(R.id.findByCat);
+        findByCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GameListActivity.this, CategoryListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        String url = "https://ledecalebackend-dev.herokuapp.com/";
+        new GameListAsync(this).execute(url);
     }
 
     @Override

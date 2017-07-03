@@ -15,6 +15,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 
 /**
  * Created by manut on 01/07/2017.
@@ -34,7 +36,7 @@ public class ConnectionAsync extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        HttpURLConnection connection;
+        HttpsURLConnection connection;
         OutputStream request = null;
 
         JSONObject holder = new JSONObject();
@@ -45,7 +47,7 @@ public class ConnectionAsync extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
         try {
-            connection = (HttpURLConnection) (new URL(params[0]).openConnection());
+            connection = (HttpsURLConnection) (new URL(params[0]).openConnection());
 
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");

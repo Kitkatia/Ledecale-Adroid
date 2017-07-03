@@ -14,6 +14,7 @@ public class FirstActivity extends Activity {
 
     Button connexion;
     Button leDecale;
+    AlertDialogManager alert = new AlertDialogManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,16 @@ public class FirstActivity extends Activity {
         connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, ConnectionActivity.class);
-                startActivity(intent);
+                MySessionManager sessionManager = new MySessionManager(getApplicationContext());
+                if(sessionManager.isLogged()) {
+                    alert.showAlertDialog(getApplicationContext(), "Login Status", "You're already connected", true);
+                    Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(FirstActivity.this, ConnectionActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

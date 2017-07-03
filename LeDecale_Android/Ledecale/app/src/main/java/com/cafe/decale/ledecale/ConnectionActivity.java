@@ -30,8 +30,6 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
 
-        Toast.makeText(getApplicationContext(), "User Login Status: "+ session.isLogged(), Toast.LENGTH_LONG).show();
-
         connection = (Button) findViewById(R.id.connection);
         connection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +50,7 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
     @Override
     public void onLoaded(String token) {
         if(token!= null) {
-            session.createLoginSession("LeDecale", email.getText().toString());
+            session.createLoginSession(token, email.getText().toString());
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
             finish();
@@ -63,5 +61,14 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
     @Override
     public void onError() {
         alert.showAlertDialog(ConnectionActivity.this, "Login failed", "Email or password not found", false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!session.isLogged()){
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 }
