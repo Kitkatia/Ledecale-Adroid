@@ -9,10 +9,12 @@ import java.io.Serializable;
 public class Category implements Serializable{
     String name;
     String translatedName;
+    int value;
 
     public Category(String name, String translatedName){
         this.name = name;
         this.translatedName = translatedName;
+        value = 0;
     }
 
     public String getName() {
@@ -29,5 +31,13 @@ public class Category implements Serializable{
 
     public void setTranslatedName(String translatedName) {
         this.translatedName = translatedName;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

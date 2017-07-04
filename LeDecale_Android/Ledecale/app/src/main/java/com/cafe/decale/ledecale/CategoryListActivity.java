@@ -1,6 +1,7 @@
 package com.cafe.decale.ledecale;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,12 +10,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cafe.decale.ledecale.adapter.CategoryAdapter;
+import com.cafe.decale.ledecale.model.Category;
+
+import java.util.ArrayList;
+
+import static android.R.id.list;
+
 /**
  * Created by manut on 03/07/2017.
  */
 
 public class CategoryListActivity extends Activity implements CategoryListAsync.Listener, AdapterView.OnItemClickListener{
     ListView categories;
+    ArrayList<Category> categoyList;
 
 
     @Override
@@ -32,14 +41,13 @@ public class CategoryListActivity extends Activity implements CategoryListAsync.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        //categoyList.get(position).setValue(1);
     }
 
     @Override
-    public void onLoaded(String[] categoryList) {
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(CategoryListActivity.this,
-                android.R.layout.simple_list_item_1, categoryList);
-        categories.setAdapter(adapter);
+    public void onLoaded(ArrayList<Category> categoryList) {
+        CategoryAdapter categoryAdapter = new CategoryAdapter (CategoryListActivity.this, categoryList);
+        categories.setAdapter(categoryAdapter);
     }
 
     @Override

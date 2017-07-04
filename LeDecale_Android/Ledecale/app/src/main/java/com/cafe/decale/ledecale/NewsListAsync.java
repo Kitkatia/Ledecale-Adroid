@@ -39,13 +39,33 @@ public class NewsListAsync extends AsyncTask<String, Void, ArrayList<News>> {
 
             JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
 
+            String title = "";
+            String content = "";
+            String dateCreation = "";
+            String urlImage = "";
+            String dateNews = "";
+
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                if(jsonObject.has("title")){
+                    title = jsonObject.get("title").equals(null) ? "" : jsonObject.getString("title");
+                }
+                if(jsonObject.has("content")){
+                    content = jsonObject.get("content").equals(null) ? "" : jsonObject.getString("content");
+                }
+                if(jsonObject.has("dateCreation")){
+                    dateCreation = jsonObject.get("dateCreation").equals(null) ? "" : jsonObject.getString("dateCreation");
+                }
+                if(jsonObject.has("urlImage")){
+                    urlImage = jsonObject.get("urlImage").equals(null) ? "" : jsonObject.getString("urlImage");
+                }
+                if(jsonObject.has("dateNews")){
+                    dateNews = jsonObject.get("dateNews").equals(null) ? "" : jsonObject.getString("dateNews");
+                }
 
-                News news = new News(jsonObject.getString("title"), jsonObject.getString("content"),jsonObject.getString("dateCreation"), jsonObject.getString("urlImage"), jsonObject.getString("dateNews"));
 
-                jsonNews.add(news);
+                jsonNews.add(new News(title, content,dateCreation, urlImage, dateNews));
             }
             return jsonNews;
         }
