@@ -9,12 +9,12 @@ import java.io.Serializable;
 public class Category implements Serializable{
     String name;
     String translatedName;
-    int value;
+    boolean isSelected;
 
     public Category(String name, String translatedName){
         this.name = name;
         this.translatedName = translatedName;
-        value = 0;
+        isSelected = false;
     }
 
     public String getName() {
@@ -33,11 +33,11 @@ public class Category implements Serializable{
         this.translatedName = translatedName;
     }
 
-    public int getValue() {
-        return value;
+    public boolean getIsSelected() {
+        return isSelected;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
     }
 }

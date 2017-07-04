@@ -13,8 +13,15 @@
     <ListView
         android:id="@+id/categories"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="418dp">
     </ListView>
+
+    <Button
+        android:id="@+id/findSelected"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/round_shape"
+        android:layout_gravity="center"
+        android:text="OK"/>
 
 </LinearLayout>
