@@ -37,7 +37,7 @@ public class ConnectionAsync extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         HttpsURLConnection connection;
-        OutputStream request = null;
+        OutputStream request;
 
         JSONObject holder = new JSONObject();
         try {

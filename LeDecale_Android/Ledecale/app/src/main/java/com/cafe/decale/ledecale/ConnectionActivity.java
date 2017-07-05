@@ -2,10 +2,17 @@ package com.cafe.decale.ledecale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,6 +23,7 @@ import android.widget.Toast;
 public class ConnectionActivity extends Activity implements ConnectionAsync.Listener{
     Button connection;
     EditText email, password;
+    TextView forgotPassword;
 
     AlertDialogManager alert = new AlertDialogManager();
 
@@ -44,12 +52,36 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
                 }
             }
         });
+        SpannableString ss = new SpannableString("Did you forget your password?");
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                new ResetPasswordAsync().execute("https://ledecalebackend-dev.herokuapp.com/password/forgot", email.getText().toString(),
+                        "https://ledecale-front-dev.herokuapp.com/reset?token=");
+                Toast.makeText(getApplicationContext(), "A link has been sent. Please check your inbox", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), FirstActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+        ss.setSpan(clickableSpan, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        forgotPassword = (TextView) findViewById(R.id.forgotPassword);
+        forgotPassword.setText(ss);
+        forgotPassword.setMovementMethod(LinkMovementMethod.getInstance());
+        forgotPassword.setHighlightColor(Color.TRANSPARENT);
     }
 
 
     @Override
     public void onLoaded(String token) {
         if(token!= null) {
+
             session.createLoginSession(token, email.getText().toString());
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
