@@ -38,10 +38,6 @@ public class MainActivity extends Activity {
         eventItemList = (Button) findViewById(R.id.eventsButton);
         newsItemList = (Button)  findViewById(R.id.newsButton);
 
-
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLogged(), Toast.LENGTH_LONG).show();
-        //session.checkLogin();
-
         HashMap<String, String> user = session.getUserDetails();
 
         String token = user.get(MySessionManager.KEY_TOKEN);
@@ -60,13 +56,19 @@ public class MainActivity extends Activity {
                     finish();
                 }
             });
+            myProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
 
         gameItemList.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, GameListActivity.class);
                 startActivity(intent);
             }

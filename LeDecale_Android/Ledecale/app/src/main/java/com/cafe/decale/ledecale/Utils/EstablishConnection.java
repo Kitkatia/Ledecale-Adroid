@@ -1,4 +1,4 @@
-package com.cafe.decale.ledecale;
+package com.cafe.decale.ledecale.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

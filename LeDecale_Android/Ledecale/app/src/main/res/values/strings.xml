@@ -14,4 +14,5 @@
     <string name="MainActivity">MainActivity</string>
     <string name="CategoryListActivity">CategoryListActivity</string>
     <string name="ConnectionActivity">ConnectionActivity</string>
+    <string name="MyProfileActivity">MyProfileActivity</string>
 </resources>

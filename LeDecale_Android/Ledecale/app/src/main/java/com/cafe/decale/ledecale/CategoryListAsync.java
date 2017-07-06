@@ -2,6 +2,7 @@ package com.cafe.decale.ledecale;
 
 import android.os.AsyncTask;
 
+import com.cafe.decale.ledecale.Utils.EstablishConnection;
 import com.cafe.decale.ledecale.model.Category;
 
 import org.json.JSONArray;

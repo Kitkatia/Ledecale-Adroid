@@ -2,6 +2,7 @@ package com.cafe.decale.ledecale;
 
 import android.os.AsyncTask;
 
+import com.cafe.decale.ledecale.Utils.EstablishConnection;
 import com.cafe.decale.ledecale.model.Category;
 import com.cafe.decale.ledecale.model.Game;
 
@@ -13,7 +14,6 @@ import org.json.JSONTokener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by manut on 13/06/2017.

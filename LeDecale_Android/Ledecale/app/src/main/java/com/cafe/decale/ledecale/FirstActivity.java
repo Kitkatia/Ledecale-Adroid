@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by manut on 24/06/2017.
@@ -37,7 +39,7 @@ public class FirstActivity extends Activity {
             public void onClick(View v) {
                 MySessionManager sessionManager = new MySessionManager(getApplicationContext());
                 if(sessionManager.isLogged()) {
-                    alert.showAlertDialog(getApplicationContext(), "Login Status", "You're already connected", true);
+                    alert.showAlertDialog(FirstActivity.this, "Login Status", "You're already connected", true);
                     Intent intent = new Intent(FirstActivity.this, MainActivity.class);
                     startActivity(intent);
                 }

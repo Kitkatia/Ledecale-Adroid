@@ -81,8 +81,9 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
     @Override
     public void onLoaded(String token) {
         if(token!= null) {
-
-            session.createLoginSession(token, email.getText().toString());
+            if(!session.isLogged()){
+                session.createLoginSession(token, email.getText().toString());
+            }
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
             finish();
