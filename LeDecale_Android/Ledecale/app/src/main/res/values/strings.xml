@@ -15,4 +15,5 @@
     <string name="CategoryListActivity">CategoryListActivity</string>
     <string name="ConnectionActivity">ConnectionActivity</string>
     <string name="MyProfileActivity">MyProfileActivity</string>
+    <string name="EditProfileActivity">EditProfileActivity</string>
 </resources>

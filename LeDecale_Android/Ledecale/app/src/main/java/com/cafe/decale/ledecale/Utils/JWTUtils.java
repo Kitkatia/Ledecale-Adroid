@@ -18,16 +18,19 @@ public class JWTUtils {
             String[] split = jwtEncoded.split("\\.");
             JSONObject jsonUser = getJson(split[1]);
             if(jsonUser.has("name")){
-                user.setFirstName(jsonUser.getString("name").equals(null) ? "" : jsonUser.getString("name"));
+                user.setFirstName(jsonUser.get("name").equals(null) ? "" : jsonUser.getString("name"));
             }
             if(jsonUser.has("lastName")){
-                user.setLastName(jsonUser.getString("lastName").equals(null) ? "" : jsonUser.getString("lastName"));
+                user.setLastName(jsonUser.get("lastName").equals(null) ? "" : jsonUser.getString("lastName"));
             }
             if(jsonUser.has("pseudo")){
-                user.setPseudo(jsonUser.getString("pseudo").equals(null) ? "" : jsonUser.getString("pseudo"));
+                user.setPseudo(jsonUser.get("pseudo").equals(null) ? "" : jsonUser.getString("pseudo"));
             }
             if(jsonUser.has("mail")){
-                user.setEmail(jsonUser.getString("mail").equals(null) ? "" : jsonUser.getString("mail"));
+                user.setEmail(jsonUser.get("mail").equals(null) ? "" : jsonUser.getString("mail"));
+            }
+            if(jsonUser.has("id")){
+                user.setId(jsonUser.get("id").equals(null) ? 0L : jsonUser.getLong("id"));
             }
             return user;
         } catch (JSONException e) {

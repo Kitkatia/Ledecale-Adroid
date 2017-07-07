@@ -47,10 +47,30 @@ class EventListAsync extends AsyncTask<String, Void, ArrayList<Event>> {
 
                 JSONArray jsonUsers = jsonObject.getJSONArray("users");
                 ArrayList<User> users = new ArrayList<>();
-
+                String lastname="", firstname="", pseudo="", email="";
+                Long id = 0L;
+                Boolean enabled = false;
                 for(int j = 0 ; j < jsonUsers.length(); j++){
                     JSONObject jsonUser = jsonUsers.getJSONObject(j);
-                    User userTemp = new User(jsonUser.getString("lastname"), jsonUser.getString("firstname"),  jsonUser.getString("email"), jsonUser.getString("pseudo"), jsonUser.getBoolean("enabled"));
+                    if(jsonUser.has("lastname")){
+                        lastname = jsonUser.get("lastname").equals(null) ? "" : jsonUser.getString("lastname");
+                    }
+                    if(jsonUser.has("name")){
+                        firstname = jsonUser.get("firstname").equals(null) ? "" : jsonUser.getString("firstname");
+                    }
+                    if(jsonUser.has("pseudo")){
+                        pseudo = jsonUser.get("pseudo").equals(null) ? "" : jsonUser.getString("pseudo");
+                    }
+                    if(jsonUser.has("email")){
+                        email = jsonUser.get("email").equals(null) ? "" : jsonUser.getString("email");
+                    }
+                    if(jsonUser.has("id")){
+                        id = jsonUser.get("id").equals(null) ? 0L : jsonUser.getLong("id");
+                    }
+                    if(jsonUser.has("enabled")){
+                        enabled = jsonUser.get("enabled").equals(null) ? false : jsonUser.getBoolean("enabled");
+                    }
+                    User userTemp = new User(lastname, firstname,  email, pseudo, enabled, id);
                     users.add(userTemp);
                 }
                 User user;
@@ -59,7 +79,25 @@ class EventListAsync extends AsyncTask<String, Void, ArrayList<Event>> {
                 }
                 else {
                     JSONObject jsonUser = (JSONObject) jsonObject.getJSONArray("user").get(0);
-                    user = new User(jsonUser.getString("lastname"), jsonUser.getString("firstname"), jsonUser.getString("email"), jsonUser.getString("pseudo"), jsonUser.getBoolean("enabled"));
+                    if(jsonUser.has("lastname")){
+                        lastname = jsonUser.get("lastname").equals(null) ? "" : jsonUser.getString("lastname");
+                    }
+                    if(jsonUser.has("name")){
+                        firstname = jsonUser.get("firstname").equals(null) ? "" : jsonUser.getString("firstname");
+                    }
+                    if(jsonUser.has("pseudo")){
+                        pseudo = jsonUser.get("pseudo").equals(null) ? "" : jsonUser.getString("pseudo");
+                    }
+                    if(jsonUser.has("email")){
+                        email = jsonUser.get("email").equals(null) ? "" : jsonUser.getString("email");
+                    }
+                    if(jsonUser.has("id")){
+                        id = jsonUser.get("id").equals(null) ? 0L : jsonUser.getLong("id");
+                    }
+                    if(jsonUser.has("enabled")){
+                        enabled = jsonUser.get("enabled").equals(null) ? false : jsonUser.getBoolean("enabled");
+                    }
+                    user = new User(lastname, firstname, email, pseudo, enabled, id);
                 }
                 Event event = new Event(jsonObject.getString("name"), jsonObject.getString("creationDate"), jsonObject.getString("startDate"), jsonObject.getString("endDate"), users, jsonObject.getString("information"), user);
 

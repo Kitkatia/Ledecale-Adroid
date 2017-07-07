@@ -11,16 +11,18 @@ public class User implements Serializable {
     String firstName;
     String email;
     String pseudo;
+    Long id;
     boolean enable;
 
     public User() {
+        id = 0L;
         lastName = "";
         firstName = "";
         email ="";
         pseudo="";
         enable = false;
     }
-    public User(String lastName, String firstName, String email, String pseudo, boolean enable) {
+    public User(String lastName, String firstName, String email, String pseudo, boolean enable, Long id) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
@@ -66,5 +68,13 @@ public class User implements Serializable {
 
     public void setEnable(boolean enable) {
         this.enable = enable;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
