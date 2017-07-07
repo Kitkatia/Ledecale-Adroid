@@ -8,11 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cafe.decale.ledecale.R;
-import com.cafe.decale.ledecale.model.Event;
+import com.cafe.decale.ledecale.model.Booking;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -23,11 +22,11 @@ import java.util.List;
  * Created by manut on 22/06/2017.
  */
 
-public class EventAdapter extends ArrayAdapter<Event> {
+public class BookingAdapter extends ArrayAdapter<Booking> {
     private Context context;
 
-    public EventAdapter(Context context, int resource, List<Event> events) {
-        super(context, resource, events);
+    public BookingAdapter(Context context, int resource, List<Booking> bookings) {
+        super(context, resource, bookings);
         this.context = context;
     }
 
@@ -36,36 +35,39 @@ public class EventAdapter extends ArrayAdapter<Event> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater unLayoutInflater = LayoutInflater.from(getContext());
-        View view = unLayoutInflater.inflate(R.layout.event_list_item, null);
+        View view = unLayoutInflater.inflate(R.layout.booking_list_item, null);
 
-        TextView name = (TextView) view.findViewById(R.id.eventName);
-        TextView creationDate = (TextView) view.findViewById(R.id.creationDate);
+        TextView name = (TextView) view.findViewById(R.id.bookingName);
         TextView startDate = (TextView) view.findViewById(R.id.startDate);
         TextView endDate = (TextView) view.findViewById(R.id.endDate);
         TextView information = (TextView) view.findViewById(R.id.information);
         //ListView users= (ListView) view.findViewById(R.id.users);
+        ImageView bookingImage = (ImageView) view.findViewById(R.id.bookingImage);
         TextView creator = (TextView) view.findViewById(R.id.userName);
+        TextView gameName = (TextView) view.findViewById(R.id.gameName);
 
 
-        Event event = getItem(position);
+        Booking booking = getItem(position);
 
-        name.setText(event.getName());
+        name.setText(booking.getName());
         name.setTextColor(Color.BLACK);
 
-        creationDate.setText("Created: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(event.getCreationDate()))));
-        creationDate.setTextColor(Color.BLACK);
-
-        startDate.setText("Scheduled for: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(event.getStartDate()))));
+        startDate.setText("Scheduled for: " + new SimpleDateFormat("dd/MM/yyyy hh:mm").format(new Date(Long.parseLong(booking.getStartDate()))));
         startDate.setTextColor(Color.BLACK);
 
-        endDate.setText("Ends: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(event.getEndDate()))));
+        endDate.setText("Ends: " + new SimpleDateFormat("dd/MM/yyyy hh:mm").format(new Date(Long.parseLong(booking.getEndDate()))));
         endDate.setTextColor(Color.BLACK);
 
-        information.setText(Html.fromHtml(event.getInformation()));
+        information.setText(Html.fromHtml(booking.getInformation()));
         information.setTextColor(Color.BLACK);
 
-        creator.setText(event.getCreator().getPseudo());
+        creator.setText(booking.getCreator().getPseudo());
         creator.setTextColor(Color.BLACK);
+
+        gameName.setText(booking.getName());
+        gameName.setTextColor(Color.BLACK);
+        
+        Picasso.with(context).load(booking.getUrlImage()).into(bookingImage);
 
         return view;
 

@@ -1,7 +1,6 @@
 package com.cafe.decale.ledecale;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cafe.decale.ledecale.adapter.EventAdapter;
-import com.cafe.decale.ledecale.model.Event;
+import com.cafe.decale.ledecale.adapter.BookingAdapter;
+import com.cafe.decale.ledecale.model.Booking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,26 +18,26 @@ import java.util.List;
  * Created by manut on 19/06/2017.
  */
 
-public class EventListActivity extends Activity implements EventListAsync.Listener, AdapterView.OnItemClickListener{
+public class BookingListActivity extends Activity implements BookingListAsync.Listener, AdapterView.OnItemClickListener{
     private ListView list;
-    private List<Event> eventList = new ArrayList<>();
+    private List<Booking> bookingList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_list_activity);
+        setContentView(R.layout.booking_list_activity);
 
         list = (ListView) findViewById(R.id.list_view);
         list.setOnItemClickListener(this);
 
         String URL = "https://ledecalebackend-dev.herokuapp.com/";
-        new EventListAsync(this).execute(URL);
+        new BookingListAsync(this).execute(URL);
     }
 
     @Override
-    public void onLoaded(List<Event> events) {
+    public void onLoaded(List<Booking> bookings) {
         Log.i("DECALE", "onLoaded");
-        eventList = events;
+        bookingList = bookings;
         loadListView();
     }
 
@@ -50,10 +49,10 @@ public class EventListActivity extends Activity implements EventListAsync.Listen
 
     private void loadListView() {
         Log.i("DECALE", "loadListView");
-        Log.i("DECALE", "" + eventList.size());
-        EventAdapter eventAdapter = new EventAdapter(EventListActivity.this, 0, eventList);
+        Log.i("DECALE", "" + bookingList.size());
+        BookingAdapter bookingAdapter = new BookingAdapter(BookingListActivity.this, 0, bookingList);
 
-        list.setAdapter(eventAdapter);
+        list.setAdapter(bookingAdapter);
 
     }
 

@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <TextView
-        android:id="@+id/eventName"
+        android:id="@+id/bookingName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/userName"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/creationDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="Date of creation" />
 
     <TextView
         android:id="@+id/startDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/eventName"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="123dp"
         android:text="Date of start"
+        android:layout_marginStart="13dp"
+        android:layout_below="@+id/bookingName"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -34,18 +28,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date of end"
+        android:layout_marginEnd="11dp"
         android:layout_below="@+id/startDate"
-        android:layout_alignStart="@+id/startDate" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startDate"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="58dp"
         android:text="Information"
-        android:layout_alignStart="@+id/endDate"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/startDate"
+        android:layout_alignStart="@+id/startDate" />
 
     <TextView
         android:id="@+id/userName"
@@ -54,4 +48,22 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="Pseudo" />
+
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/startDate"
+        android:layout_below="@+id/startDate"
+        android:layout_marginTop="17dp"
+        android:text="Game Name" />
+
+    <ImageView
+        android:id="@+id/bookingImage"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/bookingName"
+        android:layout_marginTop="14dp"
+        android:layout_toEndOf="@+id/gameName"
+        app:srcCompat="@drawable/decale_icon_360" />
 </RelativeLayout>

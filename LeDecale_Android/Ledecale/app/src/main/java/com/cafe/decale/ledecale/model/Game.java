@@ -44,6 +44,11 @@ public class Game implements Serializable {
         this.weight = weight;
         this.categories = categories;
     }
+
+    public Game() {
+        this.name = "ESCAPE ROOM";
+    }
+
     public int getAge() {
         return age;
     }

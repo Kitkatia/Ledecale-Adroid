@@ -50,7 +50,7 @@ class EditProfileAsync extends AsyncTask<String, Void, Boolean> {
             wr.writeBytes(params[2]);
             wr.flush();
             wr.close();
-            
+
             BufferedReader in = new BufferedReader( new InputStreamReader(connection.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
