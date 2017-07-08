@@ -61,7 +61,7 @@ public class EditProfileActivity extends Activity implements EditProfileAsync.Li
                 }
                 else{
                     new EditProfileAsync(EditProfileActivity.this).execute("https://ledecalebackend-dev.herokuapp.com/user/",
-                            session.getUserDetails().get(MySessionManager.KEY_TOKEN), email.getText().toString(), user.getId().toString());
+                            session.getUserDetails().get(MySessionManager.KEY_TOKEN), user.getEmail().toString(), user.getId().toString());
                 }
             }
         });
@@ -83,6 +83,7 @@ public class EditProfileActivity extends Activity implements EditProfileAsync.Li
     public void onLoaded(Boolean hasChanged) {
         if(hasChanged){
             alert.showAlertDialog(getApplicationContext(), "Profile edited", "Your profile has been succesfully edited", true);
+            session.checkLogin();
         }
         else {
             alert.showAlertDialog(getApplicationContext(), "Profile unchanged", "Your profile has not changed", false);

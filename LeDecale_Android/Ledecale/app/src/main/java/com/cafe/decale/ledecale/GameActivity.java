@@ -1,8 +1,11 @@
 package com.cafe.decale.ledecale;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +27,9 @@ public class GameActivity extends Activity{
     TextView weight;
     TextView rate;
     TextView categories;
+    Button book;
+
+    MySessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +69,18 @@ public class GameActivity extends Activity{
         for (String category : game.getCategoryNames()){
             categories.append("\n" + category);
         }
+        session = new MySessionManager(getApplicationContext());
+        book = (Button) findViewById(R.id.book);
+        if(session.getUserDetails().get(MySessionManager.KEY_TOKEN) != null && session.getUserDetails().get(MySessionManager.KEY_EMAIL) != null){
+            book.setVisibility(View.VISIBLE);
+            book.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(GameActivity.this, BookActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
     }
 }

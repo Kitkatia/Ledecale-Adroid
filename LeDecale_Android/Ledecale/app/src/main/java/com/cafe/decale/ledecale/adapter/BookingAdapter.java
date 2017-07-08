@@ -66,7 +66,7 @@ public class BookingAdapter extends ArrayAdapter<Booking> {
 
         gameName.setText(booking.getName());
         gameName.setTextColor(Color.BLACK);
-        
+
         Picasso.with(context).load(booking.getUrlImage()).into(bookingImage);
 
         return view;

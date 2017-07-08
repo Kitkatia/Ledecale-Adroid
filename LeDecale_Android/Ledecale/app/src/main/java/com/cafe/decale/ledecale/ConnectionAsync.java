@@ -3,8 +3,10 @@ package com.cafe.decale.ledecale;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -69,12 +71,21 @@ public class ConnectionAsync extends AsyncTask<String, Void, String> {
             }
             bufferedReader.close();
 
-            return stringBuilder.toString();
-        } catch (IOException e) {
+            return getTokenFromJson(stringBuilder.toString());
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
             return null;
         }
     }
+
+    private String getTokenFromJson(String s) throws JSONException {
+        JSONObject jsonToken = (JSONObject) new JSONTokener(s).nextValue();
+        if(jsonToken.has("token")){
+            return jsonToken.getString("token");
+        }
+        return "";
+    }
+
     @Override
     protected void onPostExecute(String token) {
 

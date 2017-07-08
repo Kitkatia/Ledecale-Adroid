@@ -66,4 +66,14 @@
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/gameName"
         app:srcCompat="@drawable/decale_icon_360" />
+
+    <Button
+        android:id="@+id/book"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_shape"
+        android:text="Book"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/bookingImage"
+        android:layout_alignEnd="@+id/endDate" />
 </RelativeLayout>
