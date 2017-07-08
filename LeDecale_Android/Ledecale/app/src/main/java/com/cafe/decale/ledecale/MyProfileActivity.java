@@ -63,5 +63,12 @@ public class MyProfileActivity extends Activity{
                 startActivity(intent);
             }
         });
+        myBookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfileActivity.this, MyBookings.class);
+                startActivity(intent);
+            }
+        });
     }
 }

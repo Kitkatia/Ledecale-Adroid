@@ -1,15 +1,20 @@
 package com.cafe.decale.ledecale.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cafe.decale.ledecale.BookActivity;
+import com.cafe.decale.ledecale.MyBookings;
+import com.cafe.decale.ledecale.MySessionManager;
 import com.cafe.decale.ledecale.R;
 import com.cafe.decale.ledecale.model.Booking;
 import com.squareup.picasso.Picasso;
@@ -46,7 +51,20 @@ public class BookingAdapter extends ArrayAdapter<Booking> {
         TextView creator = (TextView) view.findViewById(R.id.userName);
         TextView gameName = (TextView) view.findViewById(R.id.gameName);
 
+        Button book = (Button) view.findViewById(R.id.truc);
 
+        MySessionManager session = new MySessionManager(context);
+
+        if(session.getUserDetails().get(MySessionManager.KEY_EMAIL)!= null && session.getUserDetails().get(MySessionManager.KEY_TOKEN)!= null) {
+            book.setVisibility(View.VISIBLE);
+            book.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, BookActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+        }
         Booking booking = getItem(position);
 
         name.setText(booking.getName());

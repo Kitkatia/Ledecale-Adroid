@@ -17,14 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by manut on 19/06/2017.
+ * Created by manut on 08/07/2017.
  */
 
-public class BookingListActivity extends Activity implements BookingListAsync.Listener, AdapterView.OnItemClickListener{
+public class MyBookings extends Activity implements MyBookingsAsync.Listener, AdapterView.OnItemClickListener{
     private ListView list;
-    private Button booking;
-    private List<Booking> bookingList = new ArrayList<>();
-
+     private List<Booking> bookingList = new ArrayList<>();
+    MySessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +32,15 @@ public class BookingListActivity extends Activity implements BookingListAsync.Li
         list = (ListView) findViewById(R.id.list_view);
         list.setOnItemClickListener(this);
 
+        session = new MySessionManager(getApplicationContext());
 
         String URL = "https://ledecalebackend-dev.herokuapp.com/";
-        new BookingListAsync(this).execute(URL);
+        new MyBookingsAsync(this).execute(URL, session.getUserDetails().get(MySessionManager.KEY_TOKEN));
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
     @Override
@@ -54,14 +59,9 @@ public class BookingListActivity extends Activity implements BookingListAsync.Li
     private void loadListView() {
         Log.i("DECALE", "loadListView");
         Log.i("DECALE", "" + bookingList.size());
-        BookingAdapter bookingAdapter = new BookingAdapter(BookingListActivity.this, 0, bookingList);
+        BookingAdapter bookingAdapter = new BookingAdapter(MyBookings.this, 0, bookingList);
 
         list.setAdapter(bookingAdapter);
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }

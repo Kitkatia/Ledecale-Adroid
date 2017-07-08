@@ -40,8 +40,8 @@ public class MainActivity extends Activity {
         String token = user.get(MySessionManager.KEY_TOKEN);
 
         String email = user.get(MySessionManager.KEY_EMAIL);
+        myProfile = (ImageButton) findViewById(R.id.profile);
         if(token != null && email != null){
-            myProfile = (ImageButton) findViewById(R.id.profile);
             myProfile.setVisibility(View.VISIBLE);
             btnLogout = (ImageButton) findViewById(R.id.logout);
             btnLogout.setVisibility(View.VISIBLE);

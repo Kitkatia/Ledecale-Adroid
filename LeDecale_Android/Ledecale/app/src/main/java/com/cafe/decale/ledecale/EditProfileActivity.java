@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.cafe.decale.ledecale.Utils.JWTUtils;
 import com.cafe.decale.ledecale.model.User;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class EditProfileActivity extends Activity implements EditProfileAsync.Listener{
     EditText email;
-    Button submit, editPassword;
+    Button submit;
     ImageButton logout;
 
     MySessionManager session;
@@ -33,7 +34,6 @@ public class EditProfileActivity extends Activity implements EditProfileAsync.Li
 
         email = (EditText) findViewById(R.id.userEmail);
 
-        editPassword = (Button) findViewById(R.id.editPassword);
         submit = (Button) findViewById(R.id.ok);
         logout = (ImageButton) findViewById(R.id.logout);
 
@@ -61,19 +61,10 @@ public class EditProfileActivity extends Activity implements EditProfileAsync.Li
                 }
                 else{
                     new EditProfileAsync(EditProfileActivity.this).execute("https://ledecalebackend-dev.herokuapp.com/user/",
-                            session.getUserDetails().get(MySessionManager.KEY_TOKEN), user.getEmail().toString(), user.getId().toString());
+                            session.getUserDetails().get(MySessionManager.KEY_TOKEN), email.getText().toString(), user.getId().toString());
                 }
             }
         });
-
-
-        /*editPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MyProfileActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
 
     }
@@ -82,8 +73,9 @@ public class EditProfileActivity extends Activity implements EditProfileAsync.Li
     @Override
     public void onLoaded(Boolean hasChanged) {
         if(hasChanged){
-            alert.showAlertDialog(getApplicationContext(), "Profile edited", "Your profile has been succesfully edited", true);
-            session.checkLogin();
+            Toast.makeText(EditProfileActivity.this, "Profile edited : Your profile has been succesfully edited", Toast.LENGTH_LONG);
+            session.reConnect();
+            finish();
         }
         else {
             alert.showAlertDialog(getApplicationContext(), "Profile unchanged", "Your profile has not changed", false);

@@ -63,6 +63,13 @@ public class MySessionManager {
         }
     }
 
+    public void reConnect(){
+        Intent intent = new Intent(context, ConnectionActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     public void logoutUser(){
         editor.clear();
         editor.commit();

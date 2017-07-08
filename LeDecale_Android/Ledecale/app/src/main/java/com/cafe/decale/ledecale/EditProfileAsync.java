@@ -66,9 +66,8 @@ class EditProfileAsync extends AsyncTask<String, Void, Boolean> {
                 }
                 in.close();
                 JSONObject jsonUser = (JSONObject) new JSONTokener(response.toString()).nextValue();
-                Log.d("Kaaaaaaaaat params2" , params[2]);
-                Log.d("Kaaaaaaaaat params2" , jsonUser.toString());
-                if (jsonUser.has("email") && !params[2].equals(jsonUser.getString("email"))) {
+
+                if (jsonUser.has("email") && params[2].equals(jsonUser.getString("email"))) {
                     return true;
                 }
             } else {
