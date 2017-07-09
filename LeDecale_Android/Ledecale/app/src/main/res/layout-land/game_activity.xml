@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/decale_wallp">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/gameName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/gamePicture"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/gamePicture"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:paddingBottom="10dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/gameNumPlayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Num Players"
+            android:textColor="#000000"
+            android:layout_below="@+id/gamePicture"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/gameAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Play Time"
+            android:textColor="#000000"
+            android:layout_alignBaseline="@+id/gameNumPlayers"
+            android:layout_alignBottom="@+id/gameNumPlayers"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/gameDescription"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/gameCategories"
+            android:layout_marginTop="37dp"
+            android:paddingBottom="10dp"
+            android:text="Description"
+            android:textColor="#000000"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/gamePlayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Play time"
+            android:textColor="#000000"
+            android:layout_below="@+id/gameNumPlayers"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/gamePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/gameAge"
+            android:paddingBottom="10dp"
+            android:text="Price"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/gameRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/gamePrice"
+            android:paddingBottom="10dp"
+            android:text="Rate"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/gameWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/gamePlayTime"
+            android:layout_marginEnd="19dp"
+            android:paddingBottom="10dp"
+            android:text="weight"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/gameCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/gameWeight"
+            android:textColor="#000000"
+            android:text="Categories"/>
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/gameName"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/round_shape"
+            android:text="Book"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</ScrollView>

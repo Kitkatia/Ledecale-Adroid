@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@drawable/decale_wallp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose your categories"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:textSize="0.15in"
+        android:layout_marginTop="10dp"/>
+
+    <ListView
+        android:id="@+id/categories"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"></ListView>
+
+    <Button
+        android:id="@+id/findSelected"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_shape"
+        android:text="OK" />
+
+</LinearLayout>
