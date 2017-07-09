@@ -1,19 +1,20 @@
 package com.cafe.decale.ledecale.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.cafe.decale.ledecale.BookActivity;
-import com.cafe.decale.ledecale.MyBookings;
+import com.cafe.decale.ledecale.AlertDialogManager;
+import com.cafe.decale.ledecale.JoinBookingAsync;
 import com.cafe.decale.ledecale.MySessionManager;
 import com.cafe.decale.ledecale.R;
 import com.cafe.decale.ledecale.model.Booking;
@@ -27,12 +28,14 @@ import java.util.List;
  * Created by manut on 22/06/2017.
  */
 
-public class BookingAdapter extends ArrayAdapter<Booking> {
+public class BookingAdapter extends ArrayAdapter<Booking> implements JoinBookingAsync.Listener{
     private Context context;
+    AlertDialogManager alert;
 
     public BookingAdapter(Context context, int resource, List<Booking> bookings) {
         super(context, resource, bookings);
         this.context = context;
+        alert = new AlertDialogManager();
     }
 
 
@@ -54,18 +57,18 @@ public class BookingAdapter extends ArrayAdapter<Booking> {
         Button book = (Button) view.findViewById(R.id.truc);
 
         MySessionManager session = new MySessionManager(context);
-
-        if(session.getUserDetails().get(MySessionManager.KEY_EMAIL)!= null && session.getUserDetails().get(MySessionManager.KEY_TOKEN)!= null) {
+        final String token = session.getUserDetails().get(MySessionManager.KEY_TOKEN);
+        final Booking booking = getItem(position);
+        if(session.getUserDetails().get(MySessionManager.KEY_EMAIL)!= null && token!= null) {
             book.setVisibility(View.VISIBLE);
+
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, BookActivity.class);
-                    context.startActivity(intent);
+                    new JoinBookingAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/addUser", token,booking.getId().toString());
                 }
             });
         }
-        Booking booking = getItem(position);
 
         name.setText(booking.getName());
         name.setTextColor(Color.BLACK);
@@ -90,5 +93,20 @@ public class BookingAdapter extends ArrayAdapter<Booking> {
         return view;
 
 
+    }
+
+    @Override
+    public void onLoaded(boolean hasJoined) {
+        if(hasJoined){
+            alert.showAlertDialog(context, "Joined", "You have successfully joind the event", true);
+        }
+        else {
+            alert.showAlertDialog(context, "Fail", "Cannot join the current event", false);
+        }
+    }
+
+    @Override
+    public void onError() {
+        alert.showAlertDialog(context, "Fail", "Cannot join the current event", false);
     }
 }

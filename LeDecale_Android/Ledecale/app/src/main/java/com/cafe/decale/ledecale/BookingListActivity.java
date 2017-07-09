@@ -22,7 +22,6 @@ import java.util.List;
 
 public class BookingListActivity extends Activity implements BookingListAsync.Listener, AdapterView.OnItemClickListener{
     private ListView list;
-    private Button booking;
     private List<Booking> bookingList = new ArrayList<>();
 
     @Override

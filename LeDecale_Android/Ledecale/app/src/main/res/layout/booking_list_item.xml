@@ -71,9 +71,9 @@
         android:id="@+id/truc"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignEnd="@+id/endDate"
+        android:layout_alignTop="@+id/bookingImage"
         android:background="@drawable/round_shape"
         android:text="Book"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/bookingImage"
-        android:layout_alignEnd="@+id/endDate" />
+        android:visibility="invisible" />
 </RelativeLayout>
