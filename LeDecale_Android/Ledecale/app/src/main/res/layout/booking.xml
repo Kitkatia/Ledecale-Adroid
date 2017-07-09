@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/bookingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Booking" />
+
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookingTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="Name Game" />
+
+    <TextView
+        android:id="@+id/textViewNumPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Players number"
+        android:layout_below="@+id/gameName"
+        android:layout_toStartOf="@+id/numPlayers"
+        android:layout_marginEnd="24dp" />
+
+    <EditText
+        android:id="@+id/numPlayers"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewNumPlayers"
+        android:layout_alignBottom="@+id/textViewNumPlayers"
+        android:layout_alignStart="@+id/gameName"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Number" />
+
+    <EditText
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:layout_marginEnd="43dp"
+        android:layout_below="@+id/numPlayers"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/startDate"
+        android:layout_below="@+id/startDate"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/textViewStartingDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textViewNumPlayers"
+        android:layout_alignTop="@+id/startDate"
+        android:layout_marginTop="13dp"
+        android:text="Date start" />
+
+    <TextView
+        android:id="@+id/textViewEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textViewStartingDate"
+        android:layout_alignTop="@+id/endDate"
+        android:layout_marginTop="11dp"
+        android:text="Date end" />
+
+</RelativeLayout>

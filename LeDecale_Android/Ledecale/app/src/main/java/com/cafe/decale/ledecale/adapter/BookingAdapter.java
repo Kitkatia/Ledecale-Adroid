@@ -6,12 +6,10 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cafe.decale.ledecale.AlertDialogManager;
 import com.cafe.decale.ledecale.JoinBookingAsync;
@@ -47,7 +45,7 @@ public class BookingAdapter extends ArrayAdapter<Booking> implements JoinBooking
 
         TextView name = (TextView) view.findViewById(R.id.bookingName);
         TextView startDate = (TextView) view.findViewById(R.id.startDate);
-        TextView endDate = (TextView) view.findViewById(R.id.endDate);
+        TextView endDate = (TextView) view.findViewById(R.id.textViewEndDate);
         TextView information = (TextView) view.findViewById(R.id.information);
         //ListView users= (ListView) view.findViewById(R.id.users);
         ImageView bookingImage = (ImageView) view.findViewById(R.id.bookingImage);

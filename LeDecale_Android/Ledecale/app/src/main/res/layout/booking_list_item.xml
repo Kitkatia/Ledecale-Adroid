@@ -24,7 +24,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/endDate"
+        android:id="@+id/textViewEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date of end"
@@ -71,7 +71,7 @@
         android:id="@+id/truc"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/endDate"
+        android:layout_alignEnd="@+id/textViewEndDate"
         android:layout_alignTop="@+id/bookingImage"
         android:background="@drawable/round_shape"
         android:text="Book"

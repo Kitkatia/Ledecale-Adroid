@@ -77,6 +77,7 @@ public class GameActivity extends Activity{
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(GameActivity.this, BookActivity.class);
+                    intent.putExtra("Game Name", name.getText());
                     startActivity(intent);
                 }
             });
