@@ -17,4 +17,5 @@
     <string name="MyProfileActivity">MyProfileActivity</string>
     <string name="EditProfileActivity">EditProfileActivity</string>
     <string name="MyBookings">MyBookings</string>
+    <string name="BookActivity">BookActivity</string>
 </resources>

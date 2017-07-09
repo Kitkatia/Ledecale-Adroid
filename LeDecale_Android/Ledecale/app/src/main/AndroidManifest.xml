@@ -43,6 +43,11 @@
             >
         </activity>
         <activity
+        android:name=".BookActivity"
+        android:label="@string/BookActivity"
+        >
+    </activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/MainActivity"
             >
