@@ -18,4 +18,5 @@
     <string name="EditProfileActivity">EditProfileActivity</string>
     <string name="MyBookings">MyBookings</string>
     <string name="BookActivity">BookActivity</string>
+    <string name="FindActivityGame">FindGameActivity</string>
 </resources>

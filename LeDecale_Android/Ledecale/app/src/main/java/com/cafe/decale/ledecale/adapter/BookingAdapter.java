@@ -15,7 +15,9 @@ import com.cafe.decale.ledecale.AlertDialogManager;
 import com.cafe.decale.ledecale.JoinBookingAsync;
 import com.cafe.decale.ledecale.MySessionManager;
 import com.cafe.decale.ledecale.R;
+import com.cafe.decale.ledecale.UnbookAsync;
 import com.cafe.decale.ledecale.model.Booking;
+import com.cafe.decale.ledecale.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +31,8 @@ import java.util.List;
 public class BookingAdapter extends ArrayAdapter<Booking> implements JoinBookingAsync.Listener{
     private Context context;
     AlertDialogManager alert;
+    Button book;
+    Button unbook;
 
     public BookingAdapter(Context context, int resource, List<Booking> bookings) {
         super(context, resource, bookings);
@@ -52,18 +56,35 @@ public class BookingAdapter extends ArrayAdapter<Booking> implements JoinBooking
         TextView creator = (TextView) view.findViewById(R.id.userName);
         TextView gameName = (TextView) view.findViewById(R.id.gameName);
 
-        Button book = (Button) view.findViewById(R.id.truc);
+        book = (Button) view.findViewById(R.id.book);
+        unbook = (Button) view.findViewById(R.id.unbook);
 
         MySessionManager session = new MySessionManager(context);
+
         final String token = session.getUserDetails().get(MySessionManager.KEY_TOKEN);
         final Booking booking = getItem(position);
-        if(session.getUserDetails().get(MySessionManager.KEY_EMAIL)!= null && token!= null) {
-            book.setVisibility(View.VISIBLE);
+        final String email = session.getUserDetails().get(MySessionManager.KEY_EMAIL);
+        if(email != null && token!= null) {
+            if(booking.contains(email)) {
+                unbook.setVisibility(View.VISIBLE);
+                book.setVisibility(View.INVISIBLE);
+            }
+            else{
+                unbook.setVisibility(View.INVISIBLE);
+                book.setVisibility(View.VISIBLE);
+            }
 
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new JoinBookingAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/addUser", token,booking.getId().toString());
+                    new JoinBookingAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/addUser", token, booking.getId().toString());
+
+                }
+            });
+            unbook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new UnbookAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/delUser", token, booking.getId().toString());
                 }
             });
         }
@@ -94,17 +115,25 @@ public class BookingAdapter extends ArrayAdapter<Booking> implements JoinBooking
     }
 
     @Override
-    public void onLoaded(boolean hasJoined) {
+    public void onLoaded(boolean hasJoined, String status) {
         if(hasJoined){
-            alert.showAlertDialog(context, "Joined", "You have successfully joind the event", true);
+            if(status.equals("joined")) {
+                book.setVisibility(View.INVISIBLE);
+                unbook.setVisibility(View.VISIBLE);
+            }
+            else if(status.equals("unsubscribed")){
+                book.setVisibility(View.VISIBLE);
+                unbook.setVisibility(View.INVISIBLE);
+            }
+            alert.showAlertDialog(context, status, "You have successfully "+status +" the event", true);
         }
         else {
-            alert.showAlertDialog(context, "Fail", "Cannot join the current event", false);
+            alert.showAlertDialog(context, "Fail", "Cannot "+status +" the current event", false);
         }
     }
 
     @Override
-    public void onError() {
-        alert.showAlertDialog(context, "Fail", "Cannot join the current event", false);
+    public void onError(String status) {
+        alert.showAlertDialog(context, "Fail", "Cannot "+status+"join the current event", false);
     }
 }

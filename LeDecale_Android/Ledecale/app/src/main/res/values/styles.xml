@@ -6,6 +6,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
+    </style>
+    <style name="CustomSwitch">
+        <!-- NOTE this way the switch will be as width as required minimally -->
+        <item name="android:switchMinWidth">0dp</item>
+        <item name="android:track">@drawable/track</item>
+        <item name="android:thumb">@drawable/thumb</item>
+        <item name="android:textOff">@string/switch_thumb_off</item>
+        <item name="android:textOn">@string/switch_thumb_on</item>
+        <!-- NOTE if set to 0dp, the thumb was not visible even with padding
+                  of the thumb drawable set to -->
+        <item name="android:thumbTextPadding">@dimen/switch_thumb_radius</item>-->
+        <!--<item name="android:thumbTextPadding">0dp</item>-->
     </style>
 
+    <string name="switch_thumb_off">No</string>
+    <string name="switch_thumb_on">Yes</string>
 </resources>

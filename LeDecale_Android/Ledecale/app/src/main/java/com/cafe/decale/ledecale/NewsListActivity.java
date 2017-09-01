@@ -39,10 +39,6 @@ public class NewsListActivity extends Activity implements NewsListAsync.Listener
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-        Intent intent = new Intent(NewsListActivity.this, GameActivity.class);
-        intent.putExtra("news", newsList.get(i));
-        startActivity(intent);
-
     }
 
     @Override

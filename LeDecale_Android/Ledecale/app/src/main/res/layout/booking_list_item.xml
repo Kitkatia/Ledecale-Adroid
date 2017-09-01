@@ -5,6 +5,16 @@
     android:layout_height="match_parent"
     >
 
+    <Button
+        android:id="@+id/book"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/textViewEndDate"
+        android:layout_alignTop="@+id/bookingImage"
+        android:background="@drawable/round_shape"
+        android:text="Book"
+        android:visibility="invisible" />
+
     <TextView
         android:id="@+id/bookingName"
         android:layout_width="wrap_content"
@@ -60,7 +70,7 @@
 
     <ImageView
         android:id="@+id/bookingImage"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@+id/bookingName"
         android:layout_marginTop="14dp"
@@ -68,12 +78,12 @@
         app:srcCompat="@drawable/decale_icon_360" />
 
     <Button
-        android:id="@+id/truc"
+        android:id="@+id/unbook"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/textViewEndDate"
+        android:layout_alignStart="@+id/startDate"
         android:layout_alignTop="@+id/bookingImage"
         android:background="@drawable/round_shape"
-        android:text="Book"
+        android:text="Unbook"
         android:visibility="invisible" />
 </RelativeLayout>

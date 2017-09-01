@@ -26,7 +26,11 @@
             android:name=".CategoryListActivity"
             android:label="@string/CategoryListActivity"
             >
-        </activity>
+        </activity> <activity
+        android:name=".FindGameActivity"
+        android:label="@string/FindActivityGame"
+        >
+    </activity>
         <activity
             android:name=".MyProfileActivity"
             android:label="@string/MyProfileActivity"

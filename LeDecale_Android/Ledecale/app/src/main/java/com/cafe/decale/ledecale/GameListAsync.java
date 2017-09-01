@@ -34,7 +34,7 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
 
     @Override
     protected ArrayList<Game> doInBackground(String... strings) {
-        String rawResponse = null;
+        String rawResponse;
         ArrayList<Game> jsonGames = new ArrayList<>();
         try {
             rawResponse = EstablishConnection.loadJson(strings[0], "games");
@@ -66,7 +66,7 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
                         name = jsonCategory.get("name").equals(null) ? "" : jsonCategory.getString("name");
                     }
                     if(jsonCategory.has("translatedName")){
-                        translatedName = jsonCategory.get("translatedName").equals(null) ? "" : jsonCategory.getString("trnaslatedName");
+                        translatedName = jsonCategory.get("translatedName").equals(null) ? "" : jsonCategory.getString("translatedName");
                     }
                     Category category = new Category(name, translatedName);
                     categories.add(category);
@@ -92,10 +92,10 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
                     playerMax = jsonObject.get("player_max").equals(null) ? 0 : jsonObject.getInt("player_max");
                 }
                 if(jsonObject.has("minPlayTime")){
-                    playerMin = jsonObject.get("minPlayTime").equals(null) ? 0 : jsonObject.getInt("minPlayTime");
+                    minPlayTime = jsonObject.get("minPlayTime").equals(null) ? 0 : jsonObject.getInt("minPlayTime");
                 }
                 if(jsonObject.has("maxPlayTime")){
-                    playerMax = jsonObject.get("maxPlayTime").equals(null) ? 0 : jsonObject.getInt("maxPlayTime");
+                    maxPlayTime = jsonObject.get("maxPlayTime").equals(null) ? 0 : jsonObject.getInt("maxPlayTime");
                 }
                 if(jsonObject.has("price")){
                     price = jsonObject.get("price").equals(null) ? 0.0 : jsonObject.getDouble("price");

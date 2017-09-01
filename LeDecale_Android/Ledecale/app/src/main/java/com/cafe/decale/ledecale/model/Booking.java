@@ -120,4 +120,16 @@ public class Booking implements Serializable {
     public void setCreator(User creator) {
         this.creator = creator;
     }
+
+    public boolean contains(String email){
+        boolean isAlreadyIn = false;
+        if(users!= null){
+            for(User user : users){
+                if(user.getEmail().equals(email.toLowerCase())){
+                    isAlreadyIn = true;
+                }
+            }
+        }
+        return isAlreadyIn;
+    }
 }

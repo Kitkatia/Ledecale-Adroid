@@ -25,8 +25,12 @@ public class CategoryListActivity extends Activity implements CategoryListAsync.
     ListView categories;
     Button findGameByCat;
     CategoryAdapter categoryAdapter;
-    ArrayList<Category> categoryList;
+    ArrayList<Category> categoryList = new ArrayList<>();
 
+    @Override
+    public void onBackPressed() {
+            super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +43,27 @@ public class CategoryListActivity extends Activity implements CategoryListAsync.
         findGameByCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<Category> categoriesSelected = new ArrayList<>();
                 StringBuffer response = new StringBuffer();
                 response.append("The following were selected...\n");
+                if(categoryList.isEmpty()){
+                    return;
+                }
                 for(Category category : categoryList){
                     if(category.getIsSelected()){
                         response.append("\n" + category.getName());
+                        categoriesSelected.add(category);
                     }
                 }
                 Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result", categoriesSelected);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
             }
         });
-        String url = "https://ledecalebackend-dev.herokuapp.com/";
+       String url = "https://ledecalebackend-dev.herokuapp.com/";
         new CategoryListAsync(this).execute(url);
 
 
@@ -62,9 +76,8 @@ public class CategoryListActivity extends Activity implements CategoryListAsync.
 
     @Override
     public void onLoaded(ArrayList<Category> categoryList) {
-        this.categoryList = new ArrayList<>();
         this.categoryList.addAll(categoryList);
-        categoryAdapter = new CategoryAdapter (CategoryListActivity.this, this.categoryList);
+        categoryAdapter = new CategoryAdapter (CategoryListActivity.this, categoryList);
         categories.setAdapter(categoryAdapter);
     }
 

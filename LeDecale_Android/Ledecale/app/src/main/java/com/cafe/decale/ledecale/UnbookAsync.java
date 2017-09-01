@@ -1,11 +1,6 @@
 package com.cafe.decale.ledecale;
 
 import android.os.AsyncTask;
-import android.util.Log;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -17,11 +12,13 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
- * Created by manut on 09/07/2017.
+ * Created by manut on 28/08/2017.
  */
 
-public class JoinBookingAsync extends BookUnbook {
-    public JoinBookingAsync(Listener listener){
+public class UnbookAsync extends BookUnbook {
+
+
+    public UnbookAsync(Listener listener) {
         super(listener);
     }
 
@@ -32,7 +29,7 @@ public class JoinBookingAsync extends BookUnbook {
             URL obj = new URL(params[0]+"/"+ Long.parseLong(params[2]));
             HttpsURLConnection connection = (HttpsURLConnection) obj.openConnection();
 
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("DELETE");
             connection.addRequestProperty("Authorization", params[1]);
             connection.addRequestProperty("Content-Type", "application/json");
 
@@ -45,7 +42,7 @@ public class JoinBookingAsync extends BookUnbook {
 
 
             if (connection.getResponseCode() == 202) {
-                    return true;
+                return true;
             } else {
                 InputStream error = connection.getErrorStream();
                 try {
@@ -72,11 +69,11 @@ public class JoinBookingAsync extends BookUnbook {
 
         if (hasJoined) {
 
-            mListener.onLoaded(hasJoined, "joined");
+            mListener.onLoaded(hasJoined, "unsubscribed");
 
         } else {
 
-            mListener.onError("join");
+            mListener.onError("unsubscribe");
         }
     }
 }

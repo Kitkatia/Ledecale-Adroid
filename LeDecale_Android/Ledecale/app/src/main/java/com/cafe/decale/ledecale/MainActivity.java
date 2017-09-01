@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
-    Button gameItemList;
+    Button findGames;
     Button eventItemList;
     Button newsItemList;
     ImageButton myProfile;
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
         session = new MySessionManager(getApplicationContext());
 
-        gameItemList = (Button) findViewById(R.id.gamesButton);
+        findGames = (Button) findViewById(R.id.gamesButton);
         eventItemList = (Button) findViewById(R.id.eventsButton);
         newsItemList = (Button)  findViewById(R.id.newsButton);
 
@@ -63,10 +63,10 @@ public class MainActivity extends Activity {
         }
 
 
-        gameItemList.setOnClickListener(new View.OnClickListener(){
+        findGames.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GameListActivity.class);
+                Intent intent = new Intent(MainActivity.this, FindGameActivity.class);
                 startActivity(intent);
             }
         });
