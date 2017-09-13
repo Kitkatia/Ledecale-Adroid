@@ -35,7 +35,7 @@ public class GameActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
-        Game game = (Game) getIntent().getSerializableExtra("game");
+        final Game game = (Game) getIntent().getSerializableExtra("game");
 
         name = (TextView) findViewById(R.id.gameName);
         name.setText(game.getName());
@@ -78,6 +78,7 @@ public class GameActivity extends Activity{
                 public void onClick(View v) {
                     Intent intent = new Intent(GameActivity.this, BookActivity.class);
                     intent.putExtra("Game Name", name.getText());
+                    intent.putExtra("img", game.getThumbnail());
                     startActivity(intent);
                 }
             });

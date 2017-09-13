@@ -44,11 +44,11 @@ public class RegisterAsync extends AsyncTask<String, Void, Boolean> {
 
         JSONObject holder = new JSONObject();
         try {
-            holder.put("lastname", params[0]);
-            holder.put("firstname", params[1]);
-            holder.put("email", params[2]);
-            holder.put("pseudo", params[3]);
-            holder.put("password", params[4]);
+            holder.put("lastname", params[2]);
+            holder.put("firstname", params[3]);
+            holder.put("email", params[4]);
+            holder.put("pseudo", params[1]);
+            holder.put("password", params[5]);
         } catch (JSONException e) {
             e.printStackTrace();
         }

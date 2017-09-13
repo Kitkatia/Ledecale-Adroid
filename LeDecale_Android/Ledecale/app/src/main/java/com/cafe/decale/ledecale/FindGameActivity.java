@@ -23,7 +23,7 @@ public class FindGameActivity extends Activity implements NumberPicker.OnValueCh
     ArrayList<Category> categories = new ArrayList<>();
 
      @Override
- protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
      if(data!= null && requestCode ==1 && data.hasExtra("result")){
          this.categories = (ArrayList<Category>) data.getSerializableExtra("result");
      }

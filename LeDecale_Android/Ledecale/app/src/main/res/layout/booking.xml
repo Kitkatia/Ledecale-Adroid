@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@drawable/decale_wallp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/decale_wallp"
     android:weightSum="1">
 
     <TextView
@@ -23,15 +26,15 @@
         android:layout_marginTop="20dp"
         android:text="Name Game"
         android:textColor="@color/black"/>
+
     <ImageView
+        android:id="@+id/gameImage"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/gameName"
-        android:layout_alignStart="@+id/gameName"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/decale_icon_360"
-        android:id="@+id/gameImage" />
+        android:layout_marginTop="10dp"
+        app:srcCompat="@mipmap/ic_launcher" />
     <TextView
         android:id="@+id/textViewNumPlayers"
         android:layout_width="wrap_content"
@@ -40,7 +43,7 @@
         android:textColor="@color/black"
         android:layout_alignBaseline="@+id/numPlayers"
         android:layout_alignBottom="@+id/numPlayers"
-        android:layout_toStartOf="@+id/startDate" />
+        android:layout_alignStart="@+id/textViewStartingDate" />
 
     <EditText
         android:id="@+id/numPlayers"
@@ -53,68 +56,56 @@
         android:layout_alignStart="@+id/bookingTextView"
         android:layout_marginTop="22dp" />
 
-    <EditText
-        android:id="@+id/startDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:layout_marginEnd="40dp"
-        android:layout_below="@+id/numPlayers"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="11dp" />
-
-    <EditText
-        android:id="@+id/endDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:layout_below="@+id/startDate"
-        android:layout_alignStart="@+id/startDate"
-        android:layout_marginTop="22dp" />
-
     <TextView
         android:id="@+id/textViewStartingDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textViewNumPlayers"
-        android:layout_alignTop="@+id/startDate"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="Date start"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:layout_below="@+id/numPlayers"
+        android:layout_toStartOf="@+id/findAvailability"
+        android:layout_marginEnd="14dp" />
 
-    <TextView
-        android:id="@+id/textViewEndDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textViewStartingDate"
-        android:layout_alignTop="@+id/endDate"
-        android:layout_marginTop="10dp"
-        android:text="Date end"
-        android:textColor="@color/black"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="75dp"
         android:background="@drawable/round_rectangle_shape"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textViewEndDate"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="19dp"
         android:text="Find avalability"
-        android:id="@+id/findAvailability" />
+        android:id="@+id/findAvailability"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <Switch
         android:id="@+id/openBooking"
         style="@style/CustomSwitch"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gameImage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18dp"
         android:checked="false"
         android:text="Open booking"
         android:textColor="@color/black"
         android:textOff="No"
-        android:textOn="Yes" />
+        android:textOn="Yes"
+        android:layout_below="@+id/gameImage"
+        android:layout_alignStart="@+id/textViewNumPlayers" />
+
+    <DatePicker
+        android:id="@+id/datePicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/findAvailability"
+        android:layout_alignTop="@+id/textViewStartingDate" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textViewStartingDate"
+        android:layout_below="@+id/datePicker2"
+        android:layout_marginTop="26dp"
+        android:text="duration"
+        android:textColor="@color/black" />
 
 </RelativeLayout>
