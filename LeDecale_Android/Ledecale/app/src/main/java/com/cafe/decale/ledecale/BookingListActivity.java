@@ -51,9 +51,7 @@ public class BookingListActivity extends Activity implements BookingListAsync.Li
     }
 
     private void loadListView() {
-        Log.i("DECALE", "loadListView");
-        Log.i("DECALE", "" + bookingList.size());
-        BookingAdapter bookingAdapter = new BookingAdapter(BookingListActivity.this, 0, bookingList);
+         BookingAdapter bookingAdapter = new BookingAdapter(BookingListActivity.this, 0, bookingList);
 
         list.setAdapter(bookingAdapter);
 

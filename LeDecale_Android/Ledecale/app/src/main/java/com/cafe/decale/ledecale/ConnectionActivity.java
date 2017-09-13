@@ -26,7 +26,6 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
     TextView forgotPassword;
 
     AlertDialogManager alert = new AlertDialogManager();
-
     MySessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

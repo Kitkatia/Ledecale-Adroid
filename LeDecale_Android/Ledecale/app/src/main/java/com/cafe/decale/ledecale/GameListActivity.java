@@ -29,7 +29,7 @@ public class GameListActivity extends Activity implements GameListAsync.Listener
     int numPlayer;
     int maxPlayTime;
     String query;
-    ArrayList<Category> categories;
+    ArrayList<Category> categories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

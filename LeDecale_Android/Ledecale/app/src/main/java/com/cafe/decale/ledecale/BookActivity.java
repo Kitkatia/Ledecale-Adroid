@@ -3,6 +3,7 @@ package com.cafe.decale.ledecale;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -12,6 +13,7 @@ import android.widget.TextView;
 public class BookActivity extends Activity {
     EditText numberPlayers, endDate, startDate;
     TextView name;
+    ImageView gameImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

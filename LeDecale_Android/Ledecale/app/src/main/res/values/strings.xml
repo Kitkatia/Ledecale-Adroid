@@ -19,4 +19,5 @@
     <string name="MyBookings">MyBookings</string>
     <string name="BookActivity">BookActivity</string>
     <string name="FindActivityGame">FindGameActivity</string>
+    <string name="RegisterActivity">RegisterActivity</string>
 </resources>

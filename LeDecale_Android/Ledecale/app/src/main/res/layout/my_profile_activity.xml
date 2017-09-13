@@ -25,7 +25,7 @@
         android:layout_marginTop="30dp"
         android:layout_below="@id/leDecale"
         android:layout_marginLeft="10dp"
-        android:id="@+id/name" />
+        android:id="@+id/Name" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         android:textColor="#000000"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/name"
+        android:layout_below="@+id/Name"
         android:layout_marginLeft="10dp"
         android:id="@+id/lastName" />
     <TextView
@@ -74,7 +74,7 @@
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/name"
+        android:layout_alignBottom="@+id/Name"
         android:layout_centerHorizontal="true"
         android:text="name" />
 

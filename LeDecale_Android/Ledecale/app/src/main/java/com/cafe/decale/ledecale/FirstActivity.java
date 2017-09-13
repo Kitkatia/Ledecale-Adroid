@@ -2,7 +2,13 @@ package com.cafe.decale.ledecale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +22,7 @@ public class FirstActivity extends Activity {
 
     Button connexion;
     Button leDecale;
+    TextView register;
     AlertDialogManager alert = new AlertDialogManager();
 
     @Override
@@ -49,5 +56,25 @@ public class FirstActivity extends Activity {
                 }
             }
         });
+        SpannableString ss = new SpannableString("Register now!");
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+        ss.setSpan(clickableSpan, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        register = (TextView) findViewById(R.id.register);
+        register.setText(ss);
+        register.setMovementMethod(LinkMovementMethod.getInstance());
+        register.setHighlightColor(Color.TRANSPARENT);
     }
 }
