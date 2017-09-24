@@ -97,10 +97,9 @@ public class ConnectionActivity extends Activity implements ConnectionAsync.List
 
     @Override
     public void onBackPressed() {
-        if(!session.isLogged()){
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(i);
-            finish();
-        }
+        Intent i = new Intent(getApplicationContext(), FirstActivity.class);
+        startActivity(i);
+        finish();
+
     }
 }

@@ -50,6 +50,8 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     session.logoutUser();
+                    Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             });

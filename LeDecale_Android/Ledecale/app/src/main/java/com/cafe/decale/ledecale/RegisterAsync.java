@@ -32,11 +32,11 @@ public class RegisterAsync extends AsyncTask<String, Void, Boolean> {
     public interface Listener {
         void onLoaded(Boolean isRegistered);
 
-        void onError();
+        void onError(String message);
     }
 
     private RegisterAsync.Listener mListener;
-
+    String response;
     @Override
     protected Boolean doInBackground(String... params) {
         HttpsURLConnection connection;
@@ -78,6 +78,7 @@ public class RegisterAsync extends AsyncTask<String, Void, Boolean> {
                     while ((inputLine = in.readLine()) != null) {
                         response.append(inputLine);
                     }
+                    this.response = response.toString();
                     in.close();
                     return false;
 
@@ -100,7 +101,7 @@ public class RegisterAsync extends AsyncTask<String, Void, Boolean> {
 
         } else {
 
-            mListener.onError();
+            mListener.onError(response);
         }
     }
 }

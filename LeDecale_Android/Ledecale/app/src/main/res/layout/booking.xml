@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/decale_wallp"
-    android:weightSum="1">
+    android:background="@drawable/decale_wallp">
 
     <TextView
         android:id="@+id/bookingTextView"
@@ -49,29 +49,29 @@
         android:id="@+id/numPlayers"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Number"
+        android:hint="Number"
+        android:inputType="number"
         android:layout_below="@+id/openBooking"
-        android:layout_alignStart="@+id/bookingTextView"
-        android:layout_marginTop="22dp" />
+        android:layout_alignEnd="@+id/openBooking"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/textViewStartingDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="Date start"
         android:textColor="@color/black"
-        android:layout_below="@+id/numPlayers"
-        android:layout_toStartOf="@+id/findAvailability"
-        android:layout_marginEnd="14dp" />
+        android:layout_marginEnd="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/findAvailability" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="75dp"
         android:background="@drawable/round_rectangle_shape"
         android:layout_marginBottom="19dp"
+        android:layout_marginTop="10dp"
         android:text="Find avalability"
         android:id="@+id/findAvailability"
         android:layout_alignParentBottom="true"
@@ -82,7 +82,7 @@
         style="@style/CustomSwitch"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:checked="false"
         android:text="Open booking"
         android:textColor="@color/black"
@@ -91,21 +91,52 @@
         android:layout_below="@+id/gameImage"
         android:layout_alignStart="@+id/textViewNumPlayers" />
 
-    <DatePicker
-        android:id="@+id/datePicker2"
+    <TextView
+        android:id="@+id/durationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/findAvailability"
-        android:layout_alignTop="@+id/textViewStartingDate" />
+        android:text="duration"
+        android:textColor="@color/black"
+        android:layout_above="@+id/findAvailability"
+        android:layout_alignStart="@+id/textViewStartingDate"
+        android:layout_marginBottom="35dp" />
+
+    <Button
+        android:id="@+id/dateStart"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewStartingDate"
+        android:layout_alignBottom="@+id/textViewStartingDate"
+        android:layout_alignStart="@+id/duration"
+        android:hint="date start"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/duration"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="duration"
+        android:inputType="number"
+        android:layout_alignBaseline="@+id/durationText"
+        android:layout_alignBottom="@+id/durationText"
+        android:layout_alignStart="@+id/bookingTextView" />
 
     <TextView
-        android:id="@+id/duration"
+        android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textViewStartingDate"
-        android:layout_below="@+id/datePicker2"
-        android:layout_marginTop="26dp"
-        android:text="duration"
+        android:layout_below="@+id/dateStart"
+        android:layout_marginTop="15dp"
+        android:text="Time"
         android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/numPlayers"
+        android:layout_alignTop="@+id/timeText"
+        android:hint="Time" />
 
 </RelativeLayout>

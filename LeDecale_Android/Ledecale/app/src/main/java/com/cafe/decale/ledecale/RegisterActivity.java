@@ -100,7 +100,7 @@ public class RegisterActivity extends Activity implements RegisterAsync.Listener
     }
 
     @Override
-    public void onError() {
-        alert.showAlertDialog(RegisterActivity.this, "Registration failed", "There has been an error", false);
+    public void onError(String respose) {
+        alert.showAlertDialog(RegisterActivity.this, "Registration failed", respose, false);
     }
 }

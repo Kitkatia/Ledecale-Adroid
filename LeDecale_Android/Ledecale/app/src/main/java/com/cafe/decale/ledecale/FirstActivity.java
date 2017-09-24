@@ -40,22 +40,7 @@ public class FirstActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-        connexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MySessionManager sessionManager = new MySessionManager(getApplicationContext());
-                if(sessionManager.isLogged()) {
-                    alert.showAlertDialog(FirstActivity.this, "Login Status", "You're already connected", true);
-                    Intent intent = new Intent(FirstActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Intent intent = new Intent(FirstActivity.this, ConnectionActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
+        MySessionManager sessionManager = new MySessionManager(getApplicationContext());
         SpannableString ss = new SpannableString("Register now!");
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
@@ -76,5 +61,22 @@ public class FirstActivity extends Activity {
         register.setText(ss);
         register.setMovementMethod(LinkMovementMethod.getInstance());
         register.setHighlightColor(Color.TRANSPARENT);
+
+        connexion.setVisibility(View.INVISIBLE);
+        register.setVisibility(View.INVISIBLE);
+        if(!sessionManager.isLogged()){
+            register.setVisibility(View.VISIBLE);
+            connexion.setVisibility(View.VISIBLE);
+            connexion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(FirstActivity.this, ConnectionActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+
+
     }
 }
