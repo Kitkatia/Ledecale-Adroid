@@ -11,13 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cafe.decale.ledecale.AlertDialogManager;
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
 import com.cafe.decale.ledecale.JoinBookingAsync;
 import com.cafe.decale.ledecale.MySessionManager;
 import com.cafe.decale.ledecale.R;
 import com.cafe.decale.ledecale.UnbookAsync;
 import com.cafe.decale.ledecale.model.Booking;
-import com.cafe.decale.ledecale.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;

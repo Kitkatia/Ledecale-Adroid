@@ -1,17 +1,20 @@
-package com.cafe.decale.ledecale;
+package com.cafe.decale.ledecale.Utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+
+import com.cafe.decale.ledecale.R;
 
 /**
  * Created by manut on 26/06/2017.
  */
 
 public class AlertDialogManager {
+    public AlertDialog alertDialog;
 
     public void showAlertDialog(Context context, String title, String message, Boolean status){
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog = new AlertDialog.Builder(context).create();
 
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);

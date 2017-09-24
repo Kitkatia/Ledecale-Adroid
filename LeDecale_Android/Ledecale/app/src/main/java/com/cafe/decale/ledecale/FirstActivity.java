@@ -12,7 +12,8 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
 
 /**
  * Created by manut on 24/06/2017.
@@ -23,7 +24,6 @@ public class FirstActivity extends Activity {
     Button connexion;
     Button leDecale;
     TextView register;
-    AlertDialogManager alert = new AlertDialogManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

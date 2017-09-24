@@ -3,12 +3,12 @@ package com.cafe.decale.ledecale;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.regex.Matcher;
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
+
 import java.util.regex.Pattern;
 
 /**
@@ -93,8 +93,13 @@ public class RegisterActivity extends Activity implements RegisterAsync.Listener
     public void onLoaded(Boolean isRegistered) {
         if(isRegistered){
             alert.showAlertDialog(this, "Success", "You have been successfully registered, you can login", true);
-            Intent intent = new Intent(RegisterActivity.this, ConnectionActivity.class);
-            startActivity(intent);
+            alert.alertDialog.getButton(-1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(RegisterActivity.this, ConnectionActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
     }

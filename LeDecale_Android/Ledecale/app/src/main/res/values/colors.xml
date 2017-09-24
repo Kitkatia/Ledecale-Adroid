@@ -5,4 +5,7 @@
     <color name="colorAccent">#ef0e19</color>
     <color name="backgroundColor">#F4D5BB</color>
     <color name="black">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDivider">#aaaaaa</color>
 </resources>

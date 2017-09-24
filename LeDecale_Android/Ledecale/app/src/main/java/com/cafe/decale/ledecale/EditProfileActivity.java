@@ -9,10 +9,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
 import com.cafe.decale.ledecale.Utils.JWTUtils;
 import com.cafe.decale.ledecale.model.User;
-
-import java.util.List;
 
 /**
  * Created by manut on 06/07/2017.

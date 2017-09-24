@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
+
 
 /**
  * Created by manut on 24/06/2017.

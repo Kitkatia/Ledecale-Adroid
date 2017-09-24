@@ -8,6 +8,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
+
 import java.util.HashMap;
 
 
@@ -17,8 +19,6 @@ public class MainActivity extends Activity {
     Button newsItemList;
     ImageButton myProfile;
     ImageButton btnLogout;
-
-    AlertDialogManager alert = new AlertDialogManager();
 
     MySessionManager session;
 
