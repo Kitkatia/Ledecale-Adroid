@@ -19,73 +19,49 @@
         </activity>
         <activity
             android:name=".ConnectionActivity"
-            android:label="@string/ConnectionActivity"
-            >
-        </activity>
+            android:label="@string/ConnectionActivity" />
         <activity
-        android:name=".CalendarBookActivity"
-        android:label="@string/CalendarBookActivity"
-        >
-    </activity>
+            android:name=".CalendarBookActivity"
+            android:label="@string/CalendarBookActivity" />
+        <activity
+            android:name=".CheckAvailability"
+            android:label="@string/CheckAvailability" />
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/RegisterActivity"
-            >
-        </activity>
+            android:label="@string/RegisterActivity" />
         <activity
             android:name=".CategoryListActivity"
-            android:label="@string/CategoryListActivity"
-            >
-        </activity> <activity
-        android:name=".FindGameActivity"
-        android:label="@string/FindActivityGame"
-        >
-    </activity>
+            android:label="@string/CategoryListActivity" />
+        <activity
+            android:name=".FindGameActivity"
+            android:label="@string/FindActivityGame" />
         <activity
             android:name=".MyProfileActivity"
-            android:label="@string/MyProfileActivity"
-            >
-        </activity>
+            android:label="@string/MyProfileActivity" />
         <activity
             android:name=".EditProfileActivity"
-            android:label="@string/EditProfileActivity"
-            >
-        </activity>
+            android:label="@string/EditProfileActivity" />
         <activity
             android:name=".MyBookings"
-            android:label="@string/MyBookings"
-            >
-        </activity>
+            android:label="@string/MyBookings" />
         <activity
-        android:name=".BookActivity"
-        android:label="@string/BookActivity"
-        >
-    </activity>
+            android:name=".BookActivity"
+            android:label="@string/BookActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/MainActivity"
-            >
-        </activity>
+            android:label="@string/MainActivity" />
         <activity
             android:name=".GameListActivity"
-            android:label="@string/title_game_list_activity"
-            >
-        </activity>
+            android:label="@string/title_game_list_activity" />
         <activity
             android:name=".NewsListActivity"
-            android:label="@string/title_news_list_activity"
-            >
-        </activity>
+            android:label="@string/title_news_list_activity" />
         <activity
             android:name=".BookingListActivity"
-            android:label="@string/title_event_list_activity"
-            >
-        </activity>
+            android:label="@string/title_event_list_activity" />
         <activity
             android:name=".GameActivity"
-            android:label="@string/title_game_activity"
-            >
-        </activity>
+            android:label="@string/title_game_activity" />
 
     </application>
 

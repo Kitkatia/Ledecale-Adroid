@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/decale_wallp">
+
+    <TextView
+        android:id="@+id/bookingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Booking"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookingTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Name Game"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/gameImage"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/textViewNumPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Players number"
+        android:textColor="@color/black"
+        android:layout_alignBaseline="@+id/numPlayers"
+        android:layout_alignBottom="@+id/numPlayers"
+        android:layout_alignStart="@+id/textViewStartingDate" />
+
+    <EditText
+        android:id="@+id/numPlayers"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Number"
+        android:inputType="number"
+        android:layout_above="@+id/findAvailability"
+        android:layout_alignEnd="@+id/bookingTextView" />
+
+    <TextView
+        android:id="@+id/textViewStartingDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date start"
+        android:textColor="@color/black"
+        android:layout_marginEnd="62dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/findAvailability" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:background="@drawable/round_rectangle_shape"
+        android:text="Find avalability"
+        android:id="@+id/findAvailability"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:id="@+id/openBooking"
+        style="@style/CustomSwitch"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="Open booking"
+        android:textColor="@color/black"
+        android:textOff="No"
+        android:textOn="Yes"
+        android:layout_below="@+id/gameImage"
+        android:layout_toEndOf="@+id/textViewNumPlayers" />
+
+    <TextView
+        android:id="@+id/durationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="duration"
+        android:textColor="@color/black"
+        android:layout_alignBaseline="@+id/numPlayers"
+        android:layout_alignBottom="@+id/numPlayers"
+        android:layout_alignEnd="@+id/timeText" />
+
+    <Button
+        android:id="@+id/dateStart"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="date start"
+        android:textColor="@color/black"
+        android:layout_alignBaseline="@+id/textViewStartingDate"
+        android:layout_alignBottom="@+id/textViewStartingDate"
+        android:layout_alignStart="@+id/numPlayers" />
+
+    <EditText
+        android:id="@+id/duration"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="duration"
+        android:inputType="number"
+        android:layout_alignBaseline="@+id/durationText"
+        android:layout_alignBottom="@+id/durationText"
+        android:layout_toEndOf="@+id/durationText"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textColor="@color/black"
+        android:layout_alignBaseline="@+id/dateStart"
+        android:layout_alignBottom="@+id/dateStart"
+        android:layout_toEndOf="@+id/findAvailability" />
+
+    <Button
+        android:id="@+id/time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Time"
+        android:layout_alignBaseline="@+id/timeText"
+        android:layout_alignBottom="@+id/timeText"
+        android:layout_alignStart="@+id/duration" />
+
+</RelativeLayout>

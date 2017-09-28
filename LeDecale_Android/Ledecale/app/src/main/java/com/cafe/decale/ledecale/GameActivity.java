@@ -76,7 +76,7 @@ public class GameActivity extends Activity{
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(GameActivity.this, BookActivity.class);
+                    Intent intent = new Intent(GameActivity.this, CheckAvailability.class);
                     intent.putExtra("Game Name", name.getText());
                     intent.putExtra("img", game.getThumbnail());
                     startActivity(intent);

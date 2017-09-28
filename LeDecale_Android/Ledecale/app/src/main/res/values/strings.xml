@@ -46,4 +46,5 @@
     <string name="time_23pm">23 pm</string>
     <string name="time_24pm">24 pm</string>
     <string name="CalendarBookActivity">CalendarBookActivity</string>
+    <string name="CheckAvailability">CheckAvailability</string>
 </resources>
