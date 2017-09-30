@@ -10,33 +10,41 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cafe.decale.ledecale.Utils.AlertDialogManager;
+import com.cafe.decale.ledecale.model.EventObject;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Created by manut on 24/09/2017.
  */
 
-public class CalendarBookActivity extends Activity {
+public class CalendarBookActivity extends Activity implements EventsAsync.Listener{
     private static final String TAG = MainActivity.class.getSimpleName();
     private ImageView previousDay;
     private ImageView nextDay;
     private TextView currentDate;
+    private ArrayList<TextView> textViews = new ArrayList<>();
     private Calendar cal = Calendar.getInstance();
     private RelativeLayout mLayout;
-    private int eventIndex;
-
+    HashMap<Integer, ArrayList<EventObject>> eventObjects = new HashMap<>();
+    AlertDialogManager alert = new AlertDialogManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_book_activity);
         mLayout = (RelativeLayout)findViewById(R.id.left_event_column);
-        eventIndex = mLayout.getChildCount();
         currentDate = (TextView)findViewById(R.id.display_current_date);
         currentDate.setText(displayDateInString(cal.getTime()));
-        //displayDailyEvents();
+        int id = (int) getIntent().getSerializableExtra("ObjectId");
+        new EventsAsync(this).execute("https://ledecalebackend-dev.herokuapp.com/", String.valueOf(id));
+
         previousDay = (ImageView)findViewById(R.id.previous_day);
         nextDay = (ImageView)findViewById(R.id.next_day);
         previousDay.setOnClickListener(new View.OnClickListener() {
@@ -53,45 +61,86 @@ public class CalendarBookActivity extends Activity {
         });
     }
     private void previousCalendarDate(){
-        mLayout.removeViewAt(eventIndex - 1);
+        for(TextView tv : textViews){
+            mLayout.removeView(tv);
+        }
+        Date curDate = Calendar.getInstance().getTime();
         cal.add(Calendar.DAY_OF_MONTH, -1);
+        if(cal.getTime().getDate() == curDate.getDate()){
+
+        }
+        else if(cal.getTime().before(curDate)) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            alert.showAlertDialog(this, "Error", "Cannot go back in time" , false);
+            return;
+        }
         currentDate.setText(displayDateInString(cal.getTime()));
-        //displayDailyEvents();
+        displayDailyEvents();
     }
     private void nextCalendarDate(){
-        mLayout.removeViewAt(eventIndex - 1);
+        for(TextView tv : textViews){
+            mLayout.removeView(tv);
+        }
+        Date curDate = Calendar.getInstance().getTime();
         cal.add(Calendar.DAY_OF_MONTH, 1);
+        if(daysBetween(curDate, cal.getTime()) >= 14){
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+            alert.showAlertDialog(this, "Error", "Cannot go in the future" , false);
+            return;
+        }
         currentDate.setText(displayDateInString(cal.getTime()));
-        //displayDailyEvents();
+        displayDailyEvents();
+    }
+    public static Calendar getDatePart(Date date){
+        Calendar cal = Calendar.getInstance();       // get calendar instance
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, 0);            // set hour to midnight
+        cal.set(Calendar.MINUTE, 0);                 // set minute in hour
+        cal.set(Calendar.SECOND, 0);                 // set second in minute
+        cal.set(Calendar.MILLISECOND, 0);            // set millisecond in second
+
+        return cal;                                  // return the date part
+    }
+    public static long daysBetween(Date startDate, Date endDate) {
+        Calendar sDate = getDatePart(startDate);
+        Calendar eDate = getDatePart(endDate);
+
+        long daysBetween = 0;
+        while (sDate.before(eDate)) {
+            sDate.add(Calendar.DAY_OF_MONTH, 1);
+            daysBetween++;
+        }
+        return daysBetween;
     }
     private String displayDateInString(Date mDate){
-        SimpleDateFormat formatter = new SimpleDateFormat("d MMMM, yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM, yyyy", Locale.ENGLISH);
         return formatter.format(mDate);
     }
- /*   private void displayDailyEvents(){
-        Date calendarDate = cal.getTime();
-        for(EventObjects eObject : dailyEvent){
+    private void displayDailyEvents(){
+        if(!this.eventObjects.containsKey(cal.getTime().getDate())){
+            return;
+        }
+        for(EventObject eObject : this.eventObjects.get(cal.getTime().getDate())){
             Date eventDate = eObject.getDate();
             Date endDate = eObject.getEnd();
-            String eventMessage = eObject.getMessage();
             int eventBlockHeight = getEventTimeFrame(eventDate, endDate);
             Log.d(TAG, "Height " + eventBlockHeight);
-            displayEventSection(eventDate, eventBlockHeight, eventMessage);
+            displayEventSection(eventDate, eventBlockHeight, eObject.getMessage());
         }
-    }*/
+    }
     private int getEventTimeFrame(Date start, Date end){
         long timeDifference = end.getTime() - start.getTime();
-        Calendar mCal = Calendar.getInstance();
-        mCal.setTimeInMillis(timeDifference);
-        int hours = mCal.get(Calendar.HOUR);
-        int minutes = mCal.get(Calendar.MINUTE);
+        int conversion = 1000 * 60 * 60;
+        int minutes =  (int) timeDifference % conversion <60000 ? (int) timeDifference % conversion : ((int) timeDifference) % conversion /60000;
+
+        int hours = (int) timeDifference / conversion;
         return (hours * 60) + ((minutes * 60) / 100);
     }
     private void displayEventSection(Date eventDate, int height, String message){
         SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
         String displayValue = timeFormatter.format(eventDate);
         String[]hourMinutes = displayValue.split(":");
-        int hours = Integer.parseInt(hourMinutes[0]);
+        int hours = Integer.parseInt(hourMinutes[0]) - 3;
         int minutes = Integer.parseInt(hourMinutes[1]);
         Log.d(TAG, "Hour value " + hours);
         Log.d(TAG, "Minutes value " + minutes);
@@ -101,7 +150,7 @@ public class CalendarBookActivity extends Activity {
     }
     private void createEventView(int topMargin, int height, String message){
         TextView mEventView = new TextView(CalendarBookActivity.this);
-        RelativeLayout.LayoutParams lParam = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams lParam = new RelativeLayout.LayoutParams(200, LinearLayout.LayoutParams.WRAP_CONTENT);
         lParam.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         lParam.topMargin = topMargin * 2;
         lParam.leftMargin = 24;
@@ -110,8 +159,21 @@ public class CalendarBookActivity extends Activity {
         mEventView.setHeight(height * 2);
         mEventView.setGravity(0x11);
         mEventView.setTextColor(Color.parseColor("#ffffff"));
-        mEventView.setText(message);
         mEventView.setBackgroundColor(Color.parseColor("#3F51B5"));
-        mLayout.addView(mEventView, eventIndex - 1);
+        mEventView.setText(message);
+        mLayout.addView(mEventView);
+        textViews.add(mEventView);
+    }
+
+
+    @Override
+    public void onLoaded(HashMap<Integer, ArrayList<EventObject>> events) {
+        this.eventObjects.putAll(events);
+        displayDailyEvents();
+    }
+
+    @Override
+    public void onError() {
+        alert.showAlertDialog(CalendarBookActivity.this, "Error", "There has been an error", false);
     }
 }

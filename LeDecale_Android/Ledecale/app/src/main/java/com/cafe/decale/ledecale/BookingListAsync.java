@@ -36,7 +36,7 @@ class BookingListAsync extends AsyncTask<String, Void, ArrayList<Booking>> {
 
     @Override
     protected ArrayList<Booking> doInBackground(String... strings) {
-        String rawResponse = null;
+        String rawResponse;
         ArrayList<Booking> jsonBookings = new ArrayList<>();
         try {
             rawResponse = EstablishConnection.loadJson(strings[0], "booking/calendar");

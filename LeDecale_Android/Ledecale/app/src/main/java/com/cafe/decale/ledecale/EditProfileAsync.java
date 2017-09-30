@@ -35,7 +35,6 @@ class EditProfileAsync extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... params) {
-        String rawResponse = null;
         try {
             URL obj = new URL(params[0] + params[3]);
             HttpsURLConnection connection = (HttpsURLConnection) obj.openConnection();

@@ -73,8 +73,8 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
                 }
 
 
-                if(jsonObject.has("objectId") ){
-                    objectId = jsonObject.get("objectId").equals(null) ? 0L : jsonObject.getLong("objectId");
+                if(jsonObject.has("id") ){
+                    objectId = jsonObject.get("id").equals(null) ? 0L : jsonObject.getLong("id");
                 }
                 if(jsonObject.has("age")){
                     age = jsonObject.get("age").equals(null) ? 0 : jsonObject.getInt("age");
