@@ -45,7 +45,7 @@ public class GameAdapter extends ArrayAdapter<Game> {
 
         rate.setText(rating);
         rate.setTextColor(Color.BLACK);
-
+        if(!g.getThumbnail().equals(""))
         Picasso.with(context).load(g.getThumbnail()).into(picture);
 
 

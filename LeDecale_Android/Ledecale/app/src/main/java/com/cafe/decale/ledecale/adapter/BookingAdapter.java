@@ -76,14 +76,14 @@ public class BookingAdapter extends ArrayAdapter<Booking> implements JoinBooking
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new JoinBookingAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/addUser", token, booking.getId().toString());
+                    new JoinBookingAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/addUser", token, String.valueOf(booking.getId()));
 
                 }
             });
             unbook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new UnbookAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/delUser", token, booking.getId().toString());
+                    new UnbookAsync(BookingAdapter.this).execute("https://ledecalebackend-dev.herokuapp.com/booking/delUser", token, String.valueOf(booking.getId()));
                 }
             });
         }

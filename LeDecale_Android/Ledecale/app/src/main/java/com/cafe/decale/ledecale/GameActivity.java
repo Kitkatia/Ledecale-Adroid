@@ -77,7 +77,7 @@ public class GameActivity extends Activity{
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(GameActivity.this, CalendarBookActivity.class);
-                    intent.putExtra("ObjectId", (int)game.getObjectId());
+                    intent.putExtra("ObjectId", game.getObjectId());
                     intent.putExtra("Game Name", name.getText());
                     intent.putExtra("img", game.getThumbnail());
                     startActivity(intent);

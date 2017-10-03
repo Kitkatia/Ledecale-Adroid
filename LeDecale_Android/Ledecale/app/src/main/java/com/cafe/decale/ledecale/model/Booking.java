@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 public class Booking implements Serializable {
-    Long id;
+    int id;
     Game game;
     String type;
     String name;
@@ -20,7 +20,7 @@ public class Booking implements Serializable {
     String information;
     ArrayList<User> users;
 
-    public Booking(String type, Long id, String startDate, String endDate, User creator, ArrayList<User> users, Game game, String information, int maxUsers, String name, String urlImage) {
+    public Booking(String type, int id, String startDate, String endDate, User creator, ArrayList<User> users, Game game, String information, int maxUsers, String name, String urlImage) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -34,11 +34,11 @@ public class Booking implements Serializable {
         this.information = information;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

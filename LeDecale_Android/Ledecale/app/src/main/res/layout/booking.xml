@@ -48,13 +48,13 @@
     <EditText
         android:id="@+id/numPlayers"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:hint="Number"
-        android:inputType="number"
-        android:layout_below="@+id/openBooking"
+        android:layout_height="40dp"
         android:layout_alignEnd="@+id/openBooking"
+        android:layout_below="@+id/openBooking"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"/>
+        android:hint="Number"
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/textViewStartingDate"
@@ -62,8 +62,8 @@
         android:layout_height="wrap_content"
         android:text="Date start"
         android:textColor="@color/black"
-        android:layout_marginEnd="10dp"
-        android:layout_centerVertical="true"
+        android:layout_alignBaseline="@+id/dateStart"
+        android:layout_alignBottom="@+id/dateStart"
         android:layout_toStartOf="@+id/findAvailability" />
 
     <Button
@@ -82,61 +82,60 @@
         style="@style/CustomSwitch"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:checked="false"
         android:text="Open booking"
         android:textColor="@color/black"
         android:textOff="No"
         android:textOn="Yes"
         android:layout_below="@+id/gameImage"
-        android:layout_alignStart="@+id/textViewNumPlayers" />
+        android:layout_toEndOf="@+id/timeEndText"
+        android:layout_marginTop="14dp" />
 
     <TextView
-        android:id="@+id/durationText"
+        android:id="@+id/timeEndText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="duration"
+        android:text="Time end"
         android:textColor="@color/black"
-        android:layout_above="@+id/findAvailability"
-        android:layout_alignStart="@+id/textViewStartingDate"
-        android:layout_marginBottom="35dp" />
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/time"
+        android:layout_alignStart="@+id/timeText" />
 
     <Button
         android:id="@+id/dateStart"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewStartingDate"
-        android:layout_alignBottom="@+id/textViewStartingDate"
-        android:layout_alignStart="@+id/duration"
         android:hint="date start"
-        android:textColor="@color/black" />
-
-    <EditText
-        android:id="@+id/duration"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:hint="duration"
-        android:inputType="number"
-        android:layout_alignBaseline="@+id/durationText"
-        android:layout_alignBottom="@+id/durationText"
-        android:layout_alignStart="@+id/bookingTextView" />
+        android:textColor="@color/black"
+        android:layout_below="@+id/numPlayers"
+        android:layout_alignStart="@+id/numPlayers" />
 
     <TextView
         android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textViewStartingDate"
+        android:layout_marginTop="30dp"
+        android:text="Time start"
+        android:textColor="@color/black"
         android:layout_below="@+id/dateStart"
-        android:layout_marginTop="15dp"
-        android:text="Time"
-        android:textColor="@color/black" />
+        android:layout_alignStart="@+id/textViewStartingDate" />
 
     <Button
         android:id="@+id/time"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/numPlayers"
-        android:layout_alignTop="@+id/timeText"
-        android:hint="Time" />
+        android:hint="Start"
+        android:layout_alignBaseline="@+id/timeText"
+        android:layout_alignBottom="@+id/timeText"
+        android:layout_alignStart="@+id/dateStart" />
+
+    <Button
+        android:id="@+id/timeEnd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="End"
+        android:layout_alignBaseline="@+id/timeEndText"
+        android:layout_alignBottom="@+id/timeEndText"
+        android:layout_alignStart="@+id/time" />
 
 </RelativeLayout>

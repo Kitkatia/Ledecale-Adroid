@@ -15,7 +15,7 @@ import static android.R.attr.category;
  */
 
 public class Game implements Serializable {
-    double objectId;
+    int objectId;
     int age;
     String name;
     String description;
@@ -29,7 +29,7 @@ public class Game implements Serializable {
     double weight;
     List<Category> categories;
 
-    public Game(double objectId, int age, String name, String description, int playerMin, int playerMax, int minPlayTime, int maxPlayTime, double price, String thumbnail, double rating, double weight, List<Category> categories) {
+    public Game(int objectId, int age, String name, String description, int playerMin, int playerMax, int minPlayTime, int maxPlayTime, double price, String thumbnail, double rating, double weight, List<Category> categories) {
         this.objectId = objectId;
         this.age = age;
         this.name = name;
@@ -65,11 +65,11 @@ public class Game implements Serializable {
         this.name = name;
     }
 
-    public double getObjectId() {
+    public int getObjectId() {
         return objectId;
     }
 
-    public void setObjectId(double objectId) {
+    public void setObjectId(int objectId) {
         this.objectId = objectId;
     }
 

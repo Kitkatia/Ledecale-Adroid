@@ -42,7 +42,7 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
             JSONArray jsonArray = (JSONArray) new JSONTokener(rawResponse).nextValue();
             int age = 0;
             String name = "";
-            Long objectId = 0L;
+            int objectId = 0;
             Double rating = 0.0;
             Double weight = 0.0;
             int playerMin = 0;
@@ -74,7 +74,7 @@ public class GameListAsync extends AsyncTask<String, Void, ArrayList<Game>> {
 
 
                 if(jsonObject.has("id") ){
-                    objectId = jsonObject.get("id").equals(null) ? 0L : jsonObject.getLong("id");
+                    objectId = jsonObject.get("id").equals(null) ? 0 : (int) jsonObject.get("id");
                 }
                 if(jsonObject.has("age")){
                     age = jsonObject.get("age").equals(null) ? 0 : jsonObject.getInt("age");

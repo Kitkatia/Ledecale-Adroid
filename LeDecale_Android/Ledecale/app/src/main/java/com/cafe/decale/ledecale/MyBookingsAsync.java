@@ -104,7 +104,7 @@ public class MyBookingsAsync extends AsyncTask<String, Void, ArrayList<Booking>>
         String name="";
         String urlImage="";
         String type="";
-        Long id = 0L;
+        int id = 0;
         int maxUsers = 0;
         ArrayList<User> users = new ArrayList<>();
         User user;
@@ -134,7 +134,7 @@ public class MyBookingsAsync extends AsyncTask<String, Void, ArrayList<Booking>>
             type = jsonObject.get("type").equals(null) ? "" : jsonObject.getString("type");
         }
         if(jsonObject.has("id")){
-            id = jsonObject.get("id").equals(null) ? 0L : jsonObject.getLong("id");
+            id = jsonObject.get("id").equals(null) ? 0 : (int) jsonObject.get("id");
         }
         if(jsonObject.has("startDate")){
             startDate = jsonObject.get("startDate").equals(null) ? "" : jsonObject.getString("startDate");
@@ -151,9 +151,8 @@ public class MyBookingsAsync extends AsyncTask<String, Void, ArrayList<Booking>>
         if(jsonObject.has("title")){
             name = jsonObject.get("title").equals(null) ? "" : jsonObject.getString("title");
         }
-        if(jsonObject.has("urlImage")){
-            urlImage = jsonObject.get("urlImage").equals(null) ? "" : jsonObject.getString("urlImage");
-        }
+        urlImage = game.getThumbnail();
+
         return new Booking(type, id, startDate, finishDate, user, users, game, information, maxUsers, name, urlImage);
 
 
@@ -162,7 +161,7 @@ public class MyBookingsAsync extends AsyncTask<String, Void, ArrayList<Booking>>
     private Game getGameFromJson(JSONObject jsonObject) throws JSONException {
         int age = 0;
         String name = "";
-        Long objectId = 0L;
+        int objectId = 0;
         Double rating = 0.0;
         Double weight = 0.0;
         int playerMin = 0;
@@ -190,7 +189,7 @@ public class MyBookingsAsync extends AsyncTask<String, Void, ArrayList<Booking>>
         }
 
         if(jsonObject.has("objectId") ){
-            objectId = jsonObject.get("objectId").equals(null) ? 0L : jsonObject.getLong("objectId");
+            objectId = jsonObject.get("objectId").equals(null) ? 0 : (int) jsonObject.get("objectId");
         }
         if(jsonObject.has("age")){
             age = jsonObject.get("age").equals(null) ? 0 : jsonObject.getInt("age");

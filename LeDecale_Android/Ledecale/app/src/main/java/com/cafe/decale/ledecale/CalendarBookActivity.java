@@ -1,10 +1,12 @@
 package com.cafe.decale.ledecale;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,6 +32,7 @@ public class CalendarBookActivity extends Activity implements EventsAsync.Listen
     private ImageView previousDay;
     private ImageView nextDay;
     private TextView currentDate;
+    private Button ok;
     private ArrayList<TextView> textViews = new ArrayList<>();
     private Calendar cal = Calendar.getInstance();
     private RelativeLayout mLayout;
@@ -42,7 +45,7 @@ public class CalendarBookActivity extends Activity implements EventsAsync.Listen
         mLayout = (RelativeLayout)findViewById(R.id.left_event_column);
         currentDate = (TextView)findViewById(R.id.display_current_date);
         currentDate.setText(displayDateInString(cal.getTime()));
-        int id = (int) getIntent().getSerializableExtra("ObjectId");
+        final int id = (int) getIntent().getSerializableExtra("ObjectId");
         new EventsAsync(this).execute("https://ledecalebackend-dev.herokuapp.com/", String.valueOf(id));
 
         previousDay = (ImageView)findViewById(R.id.previous_day);
@@ -57,6 +60,19 @@ public class CalendarBookActivity extends Activity implements EventsAsync.Listen
             @Override
             public void onClick(View v) {
                 nextCalendarDate();
+            }
+        });
+        ok = (Button) findViewById(R.id.book);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalendarBookActivity.this, BookActivity.class);
+                SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+                intent.putExtra("ObjectId", id);
+                intent.putExtra("Date", format1.format(cal.getTime()));
+                intent.putExtra("img", CalendarBookActivity.this.getIntent().getSerializableExtra("img"));
+                intent.putExtra("Game Name", CalendarBookActivity.this.getIntent().getSerializableExtra("Game Name"));
+                startActivity(intent);
             }
         });
     }
